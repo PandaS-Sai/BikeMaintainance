@@ -3,193 +3,603 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Triumph Scrambler 400 X - Care Protocol</title>
+  <title>Triumph Scrambler 400 X - Complete Technical Cleaning Protocol</title>
   <style>
     :root {
       --primary: #c1121f;
+      --primary-hover: #e63946;
       --bg: #0f1416;
-      --surface: #1a2126;
-      --surface-border: #2a353d;
-      --text-main: #e6edf3;
-      --text-muted: #8b949e;
-      --accent-green: #2ea043;
+      --surface: #182026;
+      --surface-card: #202b33;
+      --border: #2d3b45;
+      --text: #e6edf3;
+      --text-muted: #94a3b8;
+      --green: #2ea043;
+      --yellow: #e3b341;
+      --orange: #f0883e;
     }
+
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       background-color: var(--bg);
-      color: var(--text-main);
-      padding: 16px;
+      color: var(--text);
       line-height: 1.5;
+      padding: 16px;
     }
-    .container { max-width: 850px; margin: 0 auto; }
+    .container { max-width: 960px; margin: 0 auto; }
+
+    /* Header */
     header {
       border-bottom: 2px solid var(--primary);
-      padding-bottom: 12px;
+      padding-bottom: 14px;
       margin-bottom: 20px;
       display: flex;
+      flex-wrap: wrap;
       justify-content: space-between;
       align-items: flex-end;
+      gap: 10px;
     }
-    h1 { font-size: 1.4rem; color: var(--primary); text-transform: uppercase; }
-    .btn-row { display: flex; gap: 8px; margin-bottom: 20px; flex-wrap: wrap; }
-    button {
+    h1 {
+      font-size: 1.5rem;
+      color: var(--primary);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .subtitle { font-size: 0.85rem; color: var(--text-muted); }
+    .badge-tag {
+      background: var(--surface-card);
+      border: 1px solid var(--border);
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    /* Action bar */
+    .filter-bar {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 24px;
       background: var(--surface);
-      border: 1px solid var(--surface-border);
-      color: var(--text-main);
+      padding: 8px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+    }
+    button.filter-btn {
+      background: transparent;
+      border: 1px solid transparent;
+      color: var(--text-muted);
+      padding: 6px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.8rem;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+    button.filter-btn:hover { color: var(--text); background: var(--surface-card); }
+    button.filter-btn.active {
+      background: var(--primary);
+      color: #fff;
+      border-color: var(--primary);
+    }
+    .utility-btns { margin-left: auto; display: flex; gap: 8px; }
+    .btn-tool {
+      background: var(--surface-card);
+      border: 1px solid var(--border);
+      color: var(--text);
       padding: 6px 12px;
       border-radius: 6px;
       cursor: pointer;
       font-size: 0.8rem;
     }
-    button.active { background: var(--primary); border-color: var(--primary); color: #fff; }
+
+    /* Section Headings */
     h2 {
-      font-size: 0.95rem;
+      font-size: 1.05rem;
       text-transform: uppercase;
-      margin: 20px 0 10px;
-      border-left: 3px solid var(--primary);
-      padding-left: 8px;
+      letter-spacing: 0.5px;
+      margin: 28px 0 14px;
+      border-left: 4px solid var(--primary);
+      padding-left: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
-    .grid-caution {
+
+    /* Diagram Section */
+    .diagram-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px;
+      margin-bottom: 24px;
+      overflow-x: auto;
+    }
+    .diagram-svg { width: 100%; min-width: 650px; height: auto; display: block; }
+
+    /* Caution cards */
+    .caution-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      gap: 10px;
-      margin-bottom: 20px;
+      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      gap: 12px;
+      margin-bottom: 28px;
     }
     .caution-card {
       background: var(--surface);
-      border: 1px solid var(--surface-border);
-      border-radius: 6px;
-      padding: 10px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 12px;
     }
-    .caution-card h3 { font-size: 0.75rem; color: var(--primary); text-transform: uppercase; margin-bottom: 4px; }
-    .caution-card p { font-size: 0.75rem; color: var(--text-muted); }
-    .task-list { display: flex; flex-direction: column; gap: 8px; }
+    .caution-card strong {
+      display: block;
+      font-size: 0.8rem;
+      color: var(--primary);
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+    .caution-card p { font-size: 0.75rem; color: var(--text-muted); line-height: 1.4; }
+
+    /* Task Checklist */
+    .task-stack { display: flex; flex-direction: column; gap: 10px; }
     .task-item {
       background: var(--surface);
-      border: 1px solid var(--surface-border);
-      border-radius: 6px;
-      padding: 10px 14px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 12px 16px;
       display: flex;
-      align-items: center;
-      gap: 12px;
+      align-items: flex-start;
+      gap: 14px;
+      transition: opacity 0.2s, border-color 0.2s;
     }
-    .task-item.done { opacity: 0.5; }
-    .task-item.done .title { text-decoration: line-through; }
-    .task-check { width: 18px; height: 18px; cursor: pointer; accent-color: var(--accent-green); }
-    .task-body { flex-grow: 1; }
-    .task-header { display: flex; justify-content: space-between; margin-bottom: 2px; }
-    .title { font-size: 0.85rem; font-weight: 600; }
-    .freq { font-size: 0.7rem; color: var(--primary); text-transform: uppercase; font-weight: bold; }
-    .meta { font-size: 0.75rem; color: var(--text-muted); }
+    .task-item.checked {
+      opacity: 0.45;
+      background: #12171a;
+      border-color: #1c262c;
+    }
+    .task-item.checked .task-title { text-decoration: line-through; }
+    .task-checkbox {
+      width: 20px;
+      height: 20px;
+      margin-top: 2px;
+      cursor: pointer;
+      accent-color: var(--green);
+      flex-shrink: 0;
+    }
+    .task-content { flex-grow: 1; }
+    .task-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 4px;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .task-title { font-size: 0.9rem; font-weight: 600; color: var(--text); }
+    .task-tag {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 2px 8px;
+      border-radius: 4px;
+      background: var(--surface-card);
+    }
+    .tag-daily { color: #58a6ff; border: 1px solid #1f6feb; }
+    .tag-weekly { color: var(--green); border: 1px solid #238636; }
+    .tag-bi-weekly { color: var(--yellow); border: 1px solid #9e6a03; }
+    .tag-monthly { color: var(--orange); border: 1px solid #bd561d; }
+    .tag-quarterly { color: #d2a8ff; border: 1px solid #8957e5; }
+    .tag-half-yearly { color: #f778ba; border: 1px solid #bf4b8a; }
+    .tag-yearly { color: #ff7b72; border: 1px solid var(--primary); }
+
+    .task-details {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      line-height: 1.4;
+      margin-bottom: 4px;
+    }
+    .task-meta {
+      font-size: 0.75rem;
+      color: #79c0ff;
+    }
+
+    /* Do / Don't Grid */
+    .rules-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-top: 20px;
+    }
+    @media (max-width: 600px) { .rules-grid { grid-template-columns: 1fr; } }
+    .rule-box {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 14px;
+      background: var(--surface);
+    }
+    .rule-box.do { border-left: 4px solid var(--green); }
+    .rule-box.dont { border-left: 4px solid var(--primary); }
+    .rule-box h3 { font-size: 0.85rem; text-transform: uppercase; margin-bottom: 8px; }
+    .rule-box.do h3 { color: var(--green); }
+    .rule-box.dont h3 { color: var(--primary); }
+    .rule-box ul { padding-left: 18px; font-size: 0.8rem; color: var(--text-muted); }
+    .rule-box li { margin-bottom: 6px; }
+
+    /* Print Stylesheet */
+    @media print {
+      body { background: #fff !important; color: #000 !important; padding: 0; }
+      .filter-bar, .badge-tag, .utility-btns { display: none !important; }
+      .diagram-box, .caution-card, .task-item, .rule-box {
+        background: #fff !important;
+        border: 1px solid #ccc !important;
+        color: #000 !important;
+      }
+      .task-title, h1, h2, strong { color: #000 !important; }
+      .task-details, .task-meta, .caution-card p, .rule-box ul { color: #333 !important; }
+      .task-checkbox { border-color: #000 !important; }
+      .diagram-svg text { fill: #000 !important; }
+      .diagram-svg rect, .diagram-svg path { stroke: #333 !important; }
+    }
   </style>
 </head>
 <body>
+
 <div class="container">
   <header>
     <div>
       <h1>Triumph Scrambler 400 X</h1>
-      <div style="font-size: 0.8rem; color: var(--text-muted);">Care & Maintenance Checklist</div>
+      <div class="subtitle">Complete Technical Cleaning, Detailing & Protection Protocol</div>
     </div>
-    <span style="font-size: 0.75rem; color: var(--text-muted);">Carnival Red</span>
+    <div class="badge-tag">Carnival Red Edition</div>
   </header>
 
-  <div class="btn-row">
-    <button class="active" onclick="filterTasks('all', this)">All</button>
-    <button onclick="filterTasks('Daily', this)">Daily</button>
-    <button onclick="filterTasks('Weekly', this)">Weekly</button>
-    <button onclick="filterTasks('Bi-Weekly', this)">Bi-Weekly</button>
-    <button onclick="filterTasks('Monthly', this)">Monthly</button>
-    <button style="margin-left: auto;" onclick="window.print()">Print / PDF</button>
-  </div>
-
-  <h2>Hardware Caution Zones</h2>
-  <div class="grid-caution">
-    <div class="caution-card">
-      <h3>Cluster & TFT</h3>
-      <p>Low pressure only. Keep USB-C seal closed.</p>
-    </div>
-    <div class="caution-card">
-      <h3>Radiator Core</h3>
-      <p>Clean front-to-back only. Never bend fins.</p>
-    </div>
-    <div class="caution-card">
-      <h3>Cat-Con & Exhaust</h3>
-      <p>Cool down 45 mins before applying water.</p>
-    </div>
-    <div class="caution-card">
-      <h3>Drive Chain</h3>
-      <p>Kerosene or dedicated chain spray only.</p>
-    </div>
-    <div class="caution-card">
-      <h3>Monoshock Shaft</h3>
-      <p>Zero direct pressure jets near the shock wiper.</p>
+  <!-- Filter & Utility Toolbar -->
+  <div class="filter-bar">
+    <button class="filter-btn active" onclick="setFilter('all', this)">All</button>
+    <button class="filter-btn" onclick="setFilter('Daily', this)">Daily</button>
+    <button class="filter-btn" onclick="setFilter('Weekly', this)">Weekly</button>
+    <button class="filter-btn" onclick="setFilter('Bi-Weekly', this)">Bi-Weekly</button>
+    <button class="filter-btn" onclick="setFilter('Monthly', this)">Monthly</button>
+    <button class="filter-btn" onclick="setFilter('Quarterly', this)">Quarterly</button>
+    <button class="filter-btn" onclick="setFilter('Half-Yearly', this)">Half-Yearly</button>
+    <button class="filter-btn" onclick="setFilter('Yearly', this)">Yearly</button>
+    
+    <div class="utility-btns">
+      <button class="btn-tool" onclick="window.print()">Print / Save PDF</button>
+      <button class="btn-tool" onclick="resetTasks()">Reset Checks</button>
     </div>
   </div>
 
-  <h2>Maintenance Checklist</h2>
-  <div class="task-list">
+  <!-- SVG Architecture Diagram -->
+  <h2>Component Caution Zones & Flow Diagram</h2>
+  <div class="diagram-box">
+    <svg class="diagram-svg" viewBox="0 0 760 210" xmlns="http://www.w3.org/2000/svg">
+      <!-- Zone 1: Cockpit -->
+      <rect x="10" y="20" width="130" height="75" rx="6" fill="#182026" stroke="#58a6ff" stroke-width="2"/>
+      <text x="75" y="44" fill="#58a6ff" font-size="11" font-weight="bold" text-anchor="middle">ZONE 1: COCKPIT</text>
+      <text x="75" y="62" fill="#94a3b8" font-size="9.5" text-anchor="middle">Analog/LCD Pod & USB</text>
+      <text x="75" y="78" fill="#f85149" font-size="9" text-anchor="middle">Low Pressure ONLY</text>
+
+      <!-- Arrow 1 to 2 -->
+      <path d="M 140 57 L 165 57" stroke="#2d3b45" stroke-width="2" marker-end="url(#arrow)"/>
+
+      <!-- Zone 2: Radiator -->
+      <rect x="165" y="20" width="130" height="75" rx="6" fill="#182026" stroke="#2ea043" stroke-width="2"/>
+      <text x="230" y="44" fill="#2ea043" font-size="11" font-weight="bold" text-anchor="middle">ZONE 2: RADIATOR</text>
+      <text x="230" y="62" fill="#94a3b8" font-size="9.5" text-anchor="middle">Aluminum Fins Core</text>
+      <text x="230" y="78" fill="#e3b341" font-size="9" text-anchor="middle">Flush Front-to-Back</text>
+
+      <!-- Arrow 2 to 3 -->
+      <path d="M 295 57 L 320 57" stroke="#2d3b45" stroke-width="2"/>
+
+      <!-- Zone 3: Exhaust -->
+      <rect x="320" y="20" width="130" height="75" rx="6" fill="#182026" stroke="#f0883e" stroke-width="2"/>
+      <text x="385" y="44" fill="#f0883e" font-size="11" font-weight="bold" text-anchor="middle">ZONE 3: EXHAUST</text>
+      <text x="385" y="62" fill="#94a3b8" font-size="9.5" text-anchor="middle">Header & Underbelly Cat</text>
+      <text x="385" y="78" fill="#f85149" font-size="9" text-anchor="middle">45-Min Cooldown First</text>
+
+      <!-- Arrow 3 to 4 -->
+      <path d="M 450 57 L 475 57" stroke="#2d3b45" stroke-width="2"/>
+
+      <!-- Zone 4: Drive Chain -->
+      <rect x="475" y="20" width="130" height="75" rx="6" fill="#182026" stroke="#d2a8ff" stroke-width="2"/>
+      <text x="540" y="44" fill="#d2a8ff" font-size="11" font-weight="bold" text-anchor="middle">ZONE 4: DRIVE CHAIN</text>
+      <text x="540" y="62" fill="#94a3b8" font-size="9.5" text-anchor="middle">O-Ring Sealed Links</text>
+      <text x="540" y="78" fill="#58a6ff" font-size="9" text-anchor="middle">Kerosene Clean ONLY</text>
+
+      <!-- Arrow 4 to 5 -->
+      <path d="M 605 57 L 630 57" stroke="#2d3b45" stroke-width="2"/>
+
+      <!-- Zone 5: Monoshock -->
+      <rect x="630" y="20" width="120" height="75" rx="6" fill="#182026" stroke="#c1121f" stroke-width="2"/>
+      <text x="690" y="44" fill="#c1121f" font-size="11" font-weight="bold" text-anchor="middle">ZONE 5: SHOCK</text>
+      <text x="690" y="62" fill="#94a3b8" font-size="9.5" text-anchor="middle">Chrome Piston Shaft</text>
+      <text x="690" y="78" fill="#f85149" font-size="9" text-anchor="middle">Zero Direct Blast</text>
+
+      <!-- Process Sequence Bar below -->
+      <rect x="10" y="125" width="740" height="65" rx="6" fill="#12171a" stroke="#2d3b45" stroke-width="1"/>
+      <text x="25" y="150" fill="#e6edf3" font-size="11" font-weight="bold">CLEANING SEQUENCE:</text>
+      <text x="25" y="170" fill="#94a3b8" font-size="10">1. Cooldown (45m) → 2. Chain Degrease → 3. Low-Pressure Top Rinse → 4. Two-Bucket Contact Wash → 5. Microfiber Dry → 6. Chain Lube</text>
+    </svg>
+  </div>
+
+  <!-- Hardware Rules Summary -->
+  <h2>Critical Caution Specs</h2>
+  <div class="caution-grid">
+    <div class="caution-card">
+      <strong>Speedo & USB Port</strong>
+      <p>Cover USB-C rubber cap tightly. Use gravity water flow or damp cloth only. High pressure penetrates handlebar switch seals.</p>
+    </div>
+    <div class="caution-card">
+      <strong>Cooling Radiator</strong>
+      <p>Thin aluminum fins deform at >100 bar. Spray water straight through matrix from front. Never spray at an angle.</p>
+    </div>
+    <div class="caution-card">
+      <strong>Cat-Con & Pipe</strong>
+      <p>Cold water on 400°C header pipes causes rapid contraction, chrome discoloration, and exhaust seal deformation.</p>
+    </div>
+    <div class="caution-card">
+      <strong>Drive Chain O-Rings</strong>
+      <p>Never use petrol or diesel (they dissolve rubber O-rings). Clean with kerosene or dedicated motorcycle chain spray.</p>
+    </div>
+    <div class="caution-card">
+      <strong>Rear Monoshock</strong>
+      <p>Never direct a jet lance at the shock wiper seal. High pressure drives Hyderabad road silt directly into damper oil.</p>
+    </div>
+  </div>
+
+  <!-- Comprehensive Checklist -->
+  <h2>Scheduled Service Protocol</h2>
+  <div class="task-stack" id="taskStack">
+
+    <!-- DAILY -->
     <div class="task-item" data-freq="Daily">
-      <input type="checkbox" class="task-check" onchange="this.closest('.task-item').classList.toggle('done')">
-      <div class="task-body">
-        <div class="task-header">
-          <span class="title">Wipe Fork Stanchions</span>
-          <span class="freq">Daily</span>
+      <input type="checkbox" class="task-checkbox" id="chk1" onchange="handleCheck(this)">
+      <div class="task-content">
+        <div class="task-head">
+          <span class="task-title">Wipe Golden Inverted Fork Stanchions</span>
+          <span class="task-tag tag-daily">Daily (2 mins)</span>
         </div>
-        <div class="meta">Dry microfiber | Clean dust rings off gold stanchions to save seals.</div>
+        <div class="task-details">Use a clean, dry microfiber cloth to wipe dust rings and bug residue from the lower chrome travel area. Prevents dried grit from scoring the internal fork oil seals during suspension compression.</div>
+        <div class="task-meta">Tool: Plush dry microfiber | Verification: Stanchion feels silky smooth to touch.</div>
       </div>
     </div>
+
     <div class="task-item" data-freq="Daily">
-      <input type="checkbox" class="task-check" onchange="this.closest('.task-item').classList.toggle('done')">
-      <div class="task-body">
-        <div class="task-header">
-          <span class="title">Clean Headlamp & Mirrors</span>
-          <span class="freq">Daily</span>
+      <input type="checkbox" class="task-checkbox" id="chk2" onchange="handleCheck(this)">
+      <div class="task-content">
+        <div class="task-head">
+          <span class="task-title">Clean Vision Surfaces (Headlamp & Mirrors)</span>
+          <span class="task-tag tag-daily">Daily (2 mins)</span>
         </div>
-        <div class="meta">Damp cloth | Clean road film from LED glass and mirrors.</div>
+        <div class="task-details">Gently wipe round LED headlamp glass, turn indicators, and rear-view mirrors with a slightly damp microfiber towel to clear traffic film and bugs.</div>
+        <div class="task-meta">Tool: Damp microfiber | Verification: Zero streaks or smudges diffusing headlight beam.</div>
       </div>
     </div>
+
+    <!-- WEEKLY -->
     <div class="task-item" data-freq="Weekly">
-      <input type="checkbox" class="task-check" onchange="this.closest('.task-item').classList.toggle('done')">
-      <div class="task-body">
-        <div class="task-header">
-          <span class="title">Two-Bucket Panel Wash</span>
-          <span class="freq">Weekly</span>
+      <input type="checkbox" class="task-checkbox" id="chk3" onchange="handleCheck(this)">
+      <div class="task-content">
+        <div class="task-head">
+          <span class="task-title">Two-Bucket Exterior Contact Wash</span>
+          <span class="task-tag tag-weekly">Weekly (15 mins)</span>
         </div>
-        <div class="meta">pH-neutral soap | Hand-wash tank, frame, and wheels. Dry thoroughly.</div>
+        <div class="task-details">Bucket 1 (pH-neutral motorcycle shampoo) and Bucket 2 (clean rinse water). Wash from the Carnival Red tank downward. Rinse mitt in Bucket 2 between passes to prevent grit swirl marks.</div>
+        <div class="task-meta">Tool: pH-neutral wash mitt + 2 buckets | Verification: Paint clear of road traffic grime.</div>
       </div>
     </div>
+
+    <div class="task-item" data-freq="Weekly">
+      <input type="checkbox" class="task-checkbox" id="chk4" onchange="handleCheck(this)">
+      <div class="task-content">
+        <div class="task-head">
+          <span class="task-title">Engine Oil & Coolant Sight Glass Inspection</span>
+          <span class="task-tag tag-weekly">Weekly (2 mins)</span>
+        </div>
+        <div class="task-details">Hold bike completely upright on flat ground. Inspect oil sight glass on lower right engine crankcase (must sit between MIN and MAX). Check expansion bottle coolant level behind frame.</div>
+        <div class="task-meta">Tool: Visual sight | Verification: Oil is amber/honey colored; coolant between level lines.</div>
+      </div>
+    </div>
+
+    <!-- BI-WEEKLY -->
     <div class="task-item" data-freq="Bi-Weekly">
-      <input type="checkbox" class="task-check" onchange="this.closest('.task-item').classList.toggle('done')">
-      <div class="task-body">
-        <div class="task-header">
-          <span class="title">Chain Clean & Lubrication</span>
-          <span class="freq">Bi-Weekly</span>
+      <input type="checkbox" class="task-checkbox" id="chk5" onchange="handleCheck(this)">
+      <div class="task-content">
+        <div class="task-head">
+          <span class="task-title">Drive Chain Degreasing</span>
+          <span class="task-tag tag-bi-weekly">Bi-Weekly (20 mins)</span>
         </div>
-        <div class="meta">Kerosene + O-ring lube | Degrease chain, dry, and spray inner roller run.</div>
+        <div class="task-details">Engine OFF, bike in neutral. Spray dedicated chain cleaner or pure kerosene across all links. Scrub all four sides using a 3-sided grunge brush while turning the rear wheel manually. Wipe bone dry with a rag.</div>
+        <div class="task-meta">Tool: Kerosene / O-ring cleaner + grunge brush | Verification: Metal side-plates are silver.</div>
       </div>
     </div>
-    <div class="task-item" data-freq="Monthly">
-      <input type="checkbox" class="task-check" onchange="this.closest('.task-item').classList.toggle('done')">
-      <div class="task-body">
-        <div class="task-header">
-          <span class="title">Clean Monoshock Cavity</span>
-          <span class="freq">Monthly</span>
+
+    <div class="task-item" data-freq="Bi-Weekly">
+      <input type="checkbox" class="task-checkbox" id="chk6" onchange="handleCheck(this)">
+      <div class="task-content">
+        <div class="task-head">
+          <span class="task-title">Chain Lubrication & Cure</span>
+          <span class="task-tag tag-bi-weekly">Bi-Weekly (10 mins)</span>
         </div>
-        <div class="meta">Soft brush + low pressure rinse | Clean spring and lower linkage.</div>
+        <div class="task-details">Apply synthetic O-ring chain lubricant to the inside run of the chain rollers while spinning wheel by hand. Shield the rear tire and brake rotor with a piece of cardboard. Allow to cure 4-6 hours.</div>
+        <div class="task-meta">Tool: Quality chain lube + cardboard shield | Verification: Thin, even coating on rollers.</div>
       </div>
+    </div>
+
+    <!-- MONTHLY -->
+    <div class="task-item" data-freq="Monthly">
+      <input type="checkbox" class="task-checkbox" id="chk7" onchange="handleCheck(this)">
+      <div class="task-content">
+        <div class="task-head">
+          <span class="task-title">Rear Monoshock Cavity Detail</span>
+          <span class="task-tag tag-monthly">Monthly (30 mins)</span>
+        </div>
+        <div class="task-details">Reach behind swingarm with a soft detailing bottle brush and diluted foam. Clean spring coils, lower eyelet bolt, and linkage area. Flush gently with trickle water (no pressure jet).</div>
+        <div class="task-meta">Tool: Soft bottle brush + diluted shampoo | Verification: Piston shaft reflects clean with no grime collar.</div>
+      </div>
+    </div>
+
+    <div class="task-item" data-freq="Monthly">
+      <input type="checkbox" class="task-checkbox" id="chk8" onchange="handleCheck(this)">
+      <div class="task-content">
+        <div class="task-head">
+          <span class="task-title">Radiator Core Matrix Decontamination</span>
+          <span class="task-tag tag-monthly">Monthly (15 mins)</span>
+        </div>
+        <div class="task-details">Spray diluted APC (All-Purpose Cleaner 1:10) over front cooling fins. Let dwell for 3 minutes to soften bugs and mud. Flush straight-through from front to back with a low-pressure garden spray.</div>
+        <div class="task-meta">Tool: Diluted APC + open hose stream | Verification: Clean light visible through aluminum fins.</div>
+      </div>
+    </div>
+
+    <!-- QUARTERLY -->
+    <div class="task-item" data-freq="Quarterly">
+      <input type="checkbox" class="task-checkbox" id="chk9" onchange="handleCheck(this)">
+      <div class="task-content">
+        <div class="task-head">
+          <span class="task-title">Carnival Red Paintwork UV Sealant</span>
+          <span class="task-tag tag-quarterly">Quarterly (3 Months)</span>
+        </div>
+        <div class="task-details">Apply a layer of synthetic paint sealant or carnauba paste wax over the fuel tank and painted body panels. Let haze for 5 minutes, then buff off with a plush microfiber towel to seal clear coat.</div>
+        <div class="task-meta">Tool: Synthetic sealant / Carnauba wax | Verification: Water tight-beading on tank surface.</div>
+      </div>
+    </div>
+
+    <div class="task-item" data-freq="Quarterly">
+      <input type="checkbox" class="task-checkbox" id="chk10" onchange="handleCheck(this)">
+      <div class="task-content">
+        <div class="task-head">
+          <span class="task-title">Plastic & Rubber Trim UV Dressing</span>
+          <span class="task-tag tag-quarterly">Quarterly (3 Months)</span>
+        </div>
+        <div class="task-details">Treat front beak, rear hugger, engine mud guard, and switchgear plastics with a dry-to-the-touch, water-based UV protectant. Prevents chalky fading from harsh sunlight.</div>
+        <div class="task-meta">Tool: Water-based UV dresser | Verification: Deep satin black finish without greasy residue.</div>
+      </div>
+    </div>
+
+    <div class="task-item" data-freq="Quarterly">
+      <input type="checkbox" class="task-checkbox" id="chk11" onchange="handleCheck(this)">
+      <div class="task-content">
+        <div class="task-head">
+          <span class="task-title">Frame Fasteners Anti-Corrosion Barrier</span>
+          <span class="task-tag tag-quarterly">Quarterly (3 Months)</span>
+        </div>
+        <div class="task-details">Spray an anti-corrosion barrier (ACF-50 or WD-40 Specialist Corrosion Inhibitor) onto a microfiber cloth. Wipe engine case bolts, subframe weld points, and footpeg pins. Keep clear of brake discs.</div>
+        <div class="task-meta">Tool: Anti-corrosion inhibitor mist | Verification: Microscopic barrier preventing bolt oxidation.</div>
+      </div>
+    </div>
+
+    <!-- HALF-YEARLY -->
+    <div class="task-item" data-freq="Half-Yearly">
+      <input type="checkbox" class="task-checkbox" id="chk12" onchange="handleCheck(this)">
+      <div class="task-content">
+        <div class="task-head">
+          <span class="task-title">Battery Terminal Service & Dielectric Shield</span>
+          <span class="task-tag tag-half-yearly">Half-Yearly (6 Months)</span>
+        </div>
+        <div class="task-details">Remove rider seat. Inspect positive and negative battery posts for acid oxidation. Disconnect negative first, clean terminals with brass brush, retighten, and coat with dielectric grease.</div>
+        <div class="task-meta">Tool: Brass wire brush + dielectric grease | Verification: Posts clean and protected against parasitic drain.</div>
+      </div>
+    </div>
+
+    <div class="task-item" data-freq="Half-Yearly">
+      <input type="checkbox" class="task-checkbox" id="chk13" onchange="handleCheck(this)">
+      <div class="task-content">
+        <div class="task-head">
+          <span class="task-title">Chassis Pivot Point Lubrication</span>
+          <span class="task-tag tag-half-yearly">Half-Yearly (6 Months)</span>
+        </div>
+        <div class="task-details">Clean and apply drops of white lithium grease or machine oil to side-stand spring hinge, clutch lever pivot bolt, and rider footpeg spring pivots.</div>
+        <div class="task-meta">Tool: White lithium grease spray | Verification: Stand and footpegs snap back smoothly with zero binding.</div>
+      </div>
+    </div>
+
+    <!-- YEARLY -->
+    <div class="task-item" data-freq="Yearly">
+      <input type="checkbox" class="task-checkbox" id="chk14" onchange="handleCheck(this)">
+      <div class="task-content">
+        <div class="task-head">
+          <span class="task-title">Full Clay Bar & Paint Decontamination</span>
+          <span class="task-tag tag-yearly">Yearly (Annual)</span>
+        </div>
+        <div class="task-details">After washing, glide a fine automotive detailing clay bar with lubricating spray across the Carnival Red fuel tank to remove embedded road fallout, brake dust, and tar spots before applying fresh sealant.</div>
+        <div class="task-meta">Tool: Clay bar + detailer lube | Verification: Tank clear coat feels glassy smooth under plastic bag test.</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Do's and Don'ts -->
+  <div class="rules-grid">
+    <div class="rule-box do">
+      <h3>Do's</h3>
+      <ul>
+        <li>Let engine and exhaust pipes cool down at least 45 minutes before applying water.</li>
+        <li>Lube chain immediately after riding when rollers are warm (draws lube into pins).</li>
+        <li>Use dedicated microfiber towels for paint and separate rags for greasy wheels.</li>
+        <li>Shield brake calipers and rear tire whenever applying spray lubricants.</li>
+      </ul>
+    </div>
+    <div class="rule-box dont">
+      <h3>Don'ts</h3>
+      <ul>
+        <li>NEVER aim a high-pressure jet directly at the rear shock seal head or cluster.</li>
+        <li>NEVER use household dish soap or laundry detergent (strips wax and dries O-rings).</li>
+        <li>NEVER run the motorcycle in gear on a paddock stand while cleaning the chain.</li>
+        <li>NEVER spray silicones or degreasers anywhere near brake rotors or pads.</li>
+      </ul>
     </div>
   </div>
 </div>
 
 <script>
-  function filterTasks(freq, btn) {
-    document.querySelectorAll('.btn-row button').forEach(b => b.classList.remove('active'));
+  // Restore saved checkbox state on load
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.task-checkbox').forEach(box => {
+      if (localStorage.getItem('scrambler_chk_' + box.id) === 'true') {
+        box.checked = true;
+        box.closest('.task-item').classList.add('checked');
+      }
+    });
+  });
+
+  // Handle checking items
+  function handleCheck(box) {
+    const parent = box.closest('.task-item');
+    if (box.checked) {
+      parent.classList.add('checked');
+      localStorage.setItem('scrambler_chk_' + box.id, 'true');
+    } else {
+      parent.classList.remove('checked');
+      localStorage.removeItem('scrambler_chk_' + box.id);
+    }
+  }
+
+  // Filter tasks by interval
+  function setFilter(freq, btn) {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
     document.querySelectorAll('.task-item').forEach(item => {
-      item.style.display = (freq === 'all' || item.getAttribute('data-freq') === freq) ? 'flex' : 'none';
+      if (freq === 'all' || item.getAttribute('data-freq') === freq) {
+        item.style.display = 'flex';
+      } else {
+        item.style.display = 'none';
+      }
     });
   }
+
+  // Reset all checked tasks
+  function resetTasks() {
+    if (confirm('Reset all checklist items?')) {
+      document.querySelectorAll('.task-checkbox').forEach(box => {
+        box.checked = false;
+        box.closest('.task-item').classList.remove('checked');
+        localStorage.removeItem('scrambler_chk_' + box.id);
+      });
+    }
+  }
 </script>
+
 </body>
 </html>
