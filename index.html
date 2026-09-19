@@ -280,17 +280,17 @@ Bucket A (Shampoo solution) & Bucket B (Clean water rinse). Low-pressure water j
 </div>
 ​<!-- Filter & Utility Toolbar -->
 <div class="filter-bar">
-<button class="filter-btn active" onclick="setFilter('all', this)">All</button>
-<button class="filter-btn" onclick="setFilter('Daily', this)">Daily</button>
-<button class="filter-btn" onclick="setFilter('Weekly', this)">Weekly</button>
-<button class="filter-btn" onclick="setFilter('Bi-Weekly', this)">Bi-Weekly</button>
-<button class="filter-btn" onclick="setFilter('Monthly', this)">Monthly</button>
-<button class="filter-btn" onclick="setFilter('Quarterly', this)">Quarterly</button>
-<button class="filter-btn" onclick="setFilter('Half-Yearly', this)">Half-Yearly</button>
-<button class="filter-btn" onclick="setFilter('Yearly', this)">Yearly</button>
+<button class="filter-btn active" data-filter="all">All</button>
+<button class="filter-btn" data-filter="Daily">Daily</button>
+<button class="filter-btn" data-filter="Weekly">Weekly</button>
+<button class="filter-btn" data-filter="Bi-Weekly">Bi-Weekly</button>
+<button class="filter-btn" data-filter="Monthly">Monthly</button>
+<button class="filter-btn" data-filter="Quarterly">Quarterly</button>
+<button class="filter-btn" data-filter="Half-Yearly">Half-Yearly</button>
+<button class="filter-btn" data-filter="Yearly">Yearly</button>
 ​<div class="utility-btns">
-<button class="btn-tool" onclick="window.print()">Print / PDF</button>
-<button class="btn-tool" onclick="resetTasks()">Reset Checks</button>
+<button class="btn-tool" id="btnPrint">Print / PDF</button>
+<button class="btn-tool" id="btnReset">Reset Checks</button>
 </div>
 </div>
 ​<!-- Hand Wash Flow Diagram -->
@@ -361,7 +361,7 @@ Bucket A (Shampoo solution) & Bucket B (Clean water rinse). Low-pressure water j
 <div class="task-stack" id="taskStack">
 ​<!-- DAILY -->
 <div class="task-item" data-freq="Daily">
-<input type="checkbox" class="task-checkbox" id="chk1" onchange="handleCheck(this)">
+<input type="checkbox" class="task-checkbox" id="chk1">
 <div class="task-content">
 <div class="task-head">
 <span class="task-title">Dry Wipe Fork Stanchions</span>
@@ -372,7 +372,7 @@ Bucket A (Shampoo solution) & Bucket B (Clean water rinse). Low-pressure water j
 </div>
 </div>
 ​<div class="task-item" data-freq="Daily">
-<input type="checkbox" class="task-checkbox" id="chk2" onchange="handleCheck(this)">
+<input type="checkbox" class="task-checkbox" id="chk2">
 <div class="task-content">
 <div class="task-head">
 <span class="task-title">Clean Headlamp Lens & Mirrors</span>
@@ -384,7 +384,7 @@ Bucket A (Shampoo solution) & Bucket B (Clean water rinse). Low-pressure water j
 </div>
 ​<!-- WEEKLY -->
 <div class="task-item" data-freq="Weekly">
-<input type="checkbox" class="task-checkbox" id="chk3" onchange="handleCheck(this)">
+<input type="checkbox" class="task-checkbox" id="chk3">
 <div class="task-content">
 <div class="task-head">
 <span class="task-title">Pre-Foam with Hand Pump Pressure Sprayer</span>
@@ -395,7 +395,7 @@ Bucket A (Shampoo solution) & Bucket B (Clean water rinse). Low-pressure water j
 </div>
 </div>
 ​<div class="task-item" data-freq="Weekly">
-<input type="checkbox" class="task-checkbox" id="chk4" onchange="handleCheck(this)">
+<input type="checkbox" class="task-checkbox" id="chk4">
 <div class="task-content">
 <div class="task-head">
 <span class="task-title">Two-Bucket Hand Sponge Wash</span>
@@ -406,7 +406,7 @@ Bucket A (Shampoo solution) & Bucket B (Clean water rinse). Low-pressure water j
 </div>
 </div>
 ​<div class="task-item" data-freq="Weekly">
-<input type="checkbox" class="task-checkbox" id="chk5" onchange="handleCheck(this)">
+<input type="checkbox" class="task-checkbox" id="chk5">
 <div class="task-content">
 <div class="task-head">
 <span class="task-title">Gravity Bucket Rinse & Microfiber Dry</span>
@@ -417,7 +417,7 @@ Bucket A (Shampoo solution) & Bucket B (Clean water rinse). Low-pressure water j
 </div>
 </div>
 ​<div class="task-item" data-freq="Weekly">
-<input type="checkbox" class="task-checkbox" id="chk6" onchange="handleCheck(this)">
+<input type="checkbox" class="task-checkbox" id="chk6">
 <div class="task-content">
 <div class="task-head">
 <span class="task-title">Fluid Sight Glass & Coolant Check</span>
@@ -429,7 +429,7 @@ Bucket A (Shampoo solution) & Bucket B (Clean water rinse). Low-pressure water j
 </div>
 ​<!-- BI-WEEKLY -->
 <div class="task-item" data-freq="Bi-Weekly">
-<input type="checkbox" class="task-checkbox" id="chk7" onchange="handleCheck(this)">
+<input type="checkbox" class="task-checkbox" id="chk7">
 <div class="task-content">
 <div class="task-head">
 <span class="task-title">Drive Chain Manual Scrub</span>
@@ -440,7 +440,7 @@ Bucket A (Shampoo solution) & Bucket B (Clean water rinse). Low-pressure water j
 </div>
 </div>
 ​<div class="task-item" data-freq="Bi-Weekly">
-<input type="checkbox" class="task-checkbox" id="chk8" onchange="handleCheck(this)">
+<input type="checkbox" class="task-checkbox" id="chk8">
 <div class="task-content">
 <div class="task-head">
 <span class="task-title">Chain Lube Application with Shield</span>
@@ -452,7 +452,7 @@ Bucket A (Shampoo solution) & Bucket B (Clean water rinse). Low-pressure water j
 </div>
 ​<!-- MONTHLY -->
 <div class="task-item" data-freq="Monthly">
-<input type="checkbox" class="task-checkbox" id="chk9" onchange="handleCheck(this)">
+<input type="checkbox" class="task-checkbox" id="chk9">
 <div class="task-content">
 <div class="task-head">
 <span class="task-title">Detail Rear Shock & Linkage with Bottle Brush</span>
@@ -463,7 +463,7 @@ Bucket A (Shampoo solution) & Bucket B (Clean water rinse). Low-pressure water j
 </div>
 </div>
 ​<div class="task-item" data-freq="Monthly">
-<input type="checkbox" class="task-checkbox" id="chk10" onchange="handleCheck(this)">
+<input type="checkbox" class="task-checkbox" id="chk10">
 <div class="task-content">
 <div class="task-head">
 <span class="task-title">Radiator Fin Hand Cleaning</span>
@@ -475,7 +475,7 @@ Bucket A (Shampoo solution) & Bucket B (Clean water rinse). Low-pressure water j
 </div>
 ​<!-- QUARTERLY -->
 <div class="task-item" data-freq="Quarterly">
-<input type="checkbox" class="task-checkbox" id="chk11" onchange="handleCheck(this)">
+<input type="checkbox" class="task-checkbox" id="chk11">
 <div class="task-content">
 <div class="task-head">
 <span class="task-title">Hand Wax / Sealant on Carnival Red Tank</span>
@@ -486,7 +486,7 @@ Bucket A (Shampoo solution) & Bucket B (Clean water rinse). Low-pressure water j
 </div>
 </div>
 ​<div class="task-item" data-freq="Quarterly">
-<input type="checkbox" class="task-checkbox" id="chk12" onchange="handleCheck(this)">
+<input type="checkbox" class="task-checkbox" id="chk12">
 <div class="task-content">
 <div class="task-head">
 <span class="task-title">Condition Unpainted Textured Plastics</span>
@@ -497,7 +497,7 @@ Bucket A (Shampoo solution) & Bucket B (Clean water rinse). Low-pressure water j
 </div>
 </div>
 ​<div class="task-item" data-freq="Quarterly">
-<input type="checkbox" class="task-checkbox" id="chk13" onchange="handleCheck(this)">
+<input type="checkbox" class="task-checkbox" id="chk13">
 <div class="task-content">
 <div class="task-head">
 <span class="task-title">Fasteners & Frame Anti-Corrosion Wipe</span>
@@ -509,7 +509,7 @@ Bucket A (Shampoo solution) & Bucket B (Clean water rinse). Low-pressure water j
 </div>
 ​<!-- HALF-YEARLY -->
 <div class="task-item" data-freq="Half-Yearly">
-<input type="checkbox" class="task-checkbox" id="chk14" onchange="handleCheck(this)">
+<input type="checkbox" class="task-checkbox" id="chk14">
 <div class="task-content">
 <div class="task-head">
 <span class="task-title">Battery Terminal Check & Dielectric Grease</span>
@@ -520,7 +520,7 @@ Bucket A (Shampoo solution) & Bucket B (Clean water rinse). Low-pressure water j
 </div>
 </div>
 ​<div class="task-item" data-freq="Half-Yearly">
-<input type="checkbox" class="task-checkbox" id="chk15" onchange="handleCheck(this)">
+<input type="checkbox" class="task-checkbox" id="chk15">
 <div class="task-content">
 <div class="task-head">
 <span class="task-title">Pivot Joints Lubrication</span>
@@ -532,7 +532,7 @@ Bucket A (Shampoo solution) & Bucket B (Clean water rinse). Low-pressure water j
 </div>
 ​<!-- YEARLY -->
 <div class="task-item" data-freq="Yearly">
-<input type="checkbox" class="task-checkbox" id="chk16" onchange="handleCheck(this)">
+<input type="checkbox" class="task-checkbox" id="chk16">
 <div class="task-content">
 <div class="task-head">
 <span class="task-title">Hand Clay Bar Decontamination</span>
@@ -566,17 +566,14 @@ Bucket A (Shampoo solution) & Bucket B (Clean water rinse). Low-pressure water j
 </div>
 </div>
 ​<script>
-// Restore saved checkbox states from LocalStorage
 document.addEventListener('DOMContentLoaded', () => {
+// 1. Initialize Saved Checkbox States from LocalStorage
 document.querySelectorAll('.task-checkbox').forEach(box => {
 if (localStorage.getItem('scrambler_handwash_' + box.id) === 'true') {
 box.checked = true;
 box.closest('.task-item').classList.add('checked');
 }
-});
-});
-​// Handle checking items & persist
-function handleCheck(box) {
+​box.addEventListener('change', () => {
 const parent = box.closest('.task-item');
 if (box.checked) {
 parent.classList.add('checked');
@@ -585,21 +582,37 @@ localStorage.setItem('scrambler_handwash_' + box.id, 'true');
 parent.classList.remove('checked');
 localStorage.removeItem('scrambler_handwash_' + box.id);
 }
-}
-​// Filter tasks by interval
-function setFilter(freq, btn) {
-document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+});
+});
+​// 2. Interval Filter Buttons (Daily, Weekly, Bi-Weekly, etc.)
+const filterButtons = document.querySelectorAll('.filter-btn');
+const taskItems = document.querySelectorAll('.task-item');
+​filterButtons.forEach(btn => {
+btn.addEventListener('click', () => {
+filterButtons.forEach(b => b.classList.remove('active'));
 btn.classList.add('active');
-document.querySelectorAll('.task-item').forEach(item => {
-if (freq === 'all' || item.getAttribute('data-freq') === freq) {
+​const selectedFilter = btn.getAttribute('data-filter');
+​taskItems.forEach(item => {
+const itemFreq = item.getAttribute('data-freq');
+if (selectedFilter === 'all' || itemFreq === selectedFilter) {
 item.style.display = 'flex';
 } else {
 item.style.display = 'none';
 }
 });
+});
+});
+​// 3. Print / PDF Button
+const printBtn = document.getElementById('btnPrint');
+if (printBtn) {
+printBtn.addEventListener('click', () => {
+window.print();
+});
 }
-​// Reset all checked tasks
-function resetTasks() {
+​// 4. Reset Checklist Button
+const resetBtn = document.getElementById('btnReset');
+if (resetBtn) {
+resetBtn.addEventListener('click', () => {
 if (confirm('Reset all checklist items?')) {
 document.querySelectorAll('.task-checkbox').forEach(box => {
 box.checked = false;
@@ -607,7 +620,9 @@ box.closest('.task-item').classList.remove('checked');
 localStorage.removeItem('scrambler_handwash_' + box.id);
 });
 }
+});
 }
+});
 </script>
 ​</body>
 </html>
