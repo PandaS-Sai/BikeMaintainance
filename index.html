@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Triumph Scrambler 400 X - Garage Arsenal & Care Protocol</title>
+<title>Triumph Scrambler 400 X - Care & Arsenal Portal</title>
 <style>
 :root {
 --primary: #c1121f;
@@ -30,23 +30,19 @@ padding: 16px;
 -webkit-tap-highlight-color: transparent;
 }
 .container { max-width: 960px; margin: 0 auto; }
-​header {
+​/* Header */
+header {
 border-bottom: 2px solid var(--primary);
-padding-bottom: 14px;
-margin-bottom: 20px;
+padding-bottom: 12px;
+margin-bottom: 16px;
 display: flex;
-flex-wrap: wrap;
 justify-content: space-between;
 align-items: flex-end;
+flex-wrap: wrap;
 gap: 10px;
 }
-h1 {
-font-size: 1.45rem;
-color: var(--primary);
-text-transform: uppercase;
-letter-spacing: 0.5px;
-}
-.subtitle { font-size: 0.85rem; color: var(--text-muted); }
+h1 { font-size: 1.4rem; color: var(--primary); text-transform: uppercase; letter-spacing: 0.5px; }
+.subtitle { font-size: 0.82rem; color: var(--text-muted); }
 .badge-tag {
 background: var(--surface-card);
 border: 1px solid var(--border);
@@ -55,248 +51,222 @@ border-radius: 20px;
 font-size: 0.75rem;
 color: var(--text-muted);
 }
-​/* Section Headings */
-h2 {
-font-size: 1.05rem;
-text-transform: uppercase;
-letter-spacing: 0.5px;
-margin: 28px 0 14px;
-border-left: 4px solid var(--primary);
-padding-left: 10px;
+​/* Main Navigation Tabs */
+.tab-nav {
 display: flex;
-align-items: center;
 gap: 8px;
+margin-bottom: 18px;
+border-bottom: 1px solid var(--border);
+padding-bottom: 8px;
 }
-​/* Filter & Utility Toolbar - Solidified for Mobile Clicks */
+.tab-btn {
+background: var(--surface);
+border: 1px solid var(--border);
+color: var(--text-muted);
+padding: 8px 16px;
+border-radius: 6px;
+cursor: pointer;
+font-size: 0.88rem;
+font-weight: 600;
+transition: all 0.2s;
+}
+.tab-btn:hover { color: var(--text); background: var(--surface-card); }
+.tab-btn.active {
+background: var(--primary);
+color: #fff;
+border-color: var(--primary);
+}
+​/* Tab Page Visibility */
+.tab-content { display: none; }
+.tab-content.active { display: block; }
+​/* Sub-Filter Toolbar (Right at top of checklist) */
 .filter-bar {
 display: flex;
-gap: 8px;
+gap: 6px;
 flex-wrap: wrap;
-margin-bottom: 24px;
+margin-bottom: 18px;
 background: var(--surface);
-padding: 12px;
+padding: 10px;
 border-radius: 8px;
 border: 1px solid var(--border);
-position: relative;
-z-index: 10;
 }
 .filter-btn {
 background: var(--surface-card);
 border: 1px solid var(--border);
 color: var(--text-muted);
-padding: 8px 14px;
+padding: 6px 12px;
 border-radius: 6px;
 cursor: pointer;
-font-size: 0.82rem;
-font-weight: 600;
-transition: all 0.15s ease;
-touch-action: manipulation;
+font-size: 0.8rem;
+font-weight: 500;
+transition: all 0.15s;
 }
-.filter-btn:hover { color: var(--text); background: #30363d; }
+.filter-btn:hover { color: var(--text); }
 .filter-btn.active {
-background: var(--primary) !important;
-color: #ffffff !important;
-border-color: var(--primary) !important;
+background: var(--primary);
+color: #ffffff;
+border-color: var(--primary);
 }
 ​.utility-btns {
 margin-left: auto;
 display: flex;
-gap: 8px;
+gap: 6px;
 }
 .btn-tool {
 background: var(--surface-card);
 border: 1px solid var(--border);
 color: var(--text);
-padding: 8px 14px;
+padding: 6px 12px;
 border-radius: 6px;
 cursor: pointer;
-font-size: 0.82rem;
-font-weight: 500;
-touch-action: manipulation;
+font-size: 0.8rem;
 }
-.btn-tool:hover { background: #30363d; border-color: var(--primary); }
-​/* Equipment Arsenal Grid */
-.arsenal-grid {
+.btn-tool:hover { border-color: var(--primary); }
+​/* Section Headings */
+h2 {
+font-size: 1rem;
+text-transform: uppercase;
+letter-spacing: 0.5px;
+margin: 20px 0 12px;
+border-left: 4px solid var(--primary);
+padding-left: 8px;
+}
+​/* Checklist Stack */
+.task-list { display: flex; flex-direction: column; gap: 8px; margin-bottom: 24px; }
+.task-item {
+background: var(--surface);
+border: 1px solid var(--border);
+border-radius: 6px;
+padding: 10px 14px;
+display: flex;
+align-items: flex-start;
+gap: 12px;
+transition: opacity 0.2s;
+}
+.task-item.done { opacity: 0.45; }
+.task-item.done .task-title { text-decoration: line-through; }
+.task-check {
+width: 18px;
+height: 18px;
+margin-top: 2px;
+cursor: pointer;
+accent-color: var(--green);
+flex-shrink: 0;
+}
+.task-body { flex-grow: 1; }
+.task-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 3px; gap: 8px; flex-wrap: wrap; }
+.task-title { font-size: 0.88rem; font-weight: 600; color: var(--text); }
+.task-freq {
+font-size: 0.7rem;
+color: var(--primary);
+text-transform: uppercase;
+font-weight: bold;
+background: var(--surface-card);
+padding: 2px 6px;
+border-radius: 4px;
+}
+.task-desc { font-size: 0.8rem; color: var(--text-muted); line-height: 1.4; margin-bottom: 4px; }
+.task-meta { font-size: 0.74rem; color: #79c0ff; }
+​/* Inventory Grid & Cards */
+.inventory-grid {
 display: grid;
-grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
 gap: 12px;
 margin-bottom: 24px;
 }
-.arsenal-card {
+.inv-card {
 background: var(--surface);
 border: 1px solid var(--border);
 border-radius: 8px;
 padding: 14px;
 display: flex;
 flex-direction: column;
-gap: 8px;
+gap: 6px;
 }
-.arsenal-head {
+.inv-card.checked { opacity: 0.55; }
+.inv-head {
 display: flex;
 justify-content: space-between;
 align-items: center;
 border-bottom: 1px solid var(--surface-card);
 padding-bottom: 6px;
 }
-.arsenal-category {
-font-size: 0.75rem;
-font-weight: bold;
+.inv-cat {
+font-size: 0.72rem;
+font-weight: 700;
 text-transform: uppercase;
 color: var(--blue);
 }
-.arsenal-status {
-font-size: 0.7rem;
-padding: 2px 6px;
-border-radius: 4px;
-background: var(--surface-card);
+.inv-check-label {
+font-size: 0.75rem;
 color: var(--text-muted);
+display: flex;
+align-items: center;
+gap: 6px;
+cursor: pointer;
 }
-.arsenal-title {
-font-size: 0.9rem;
-font-weight: 600;
-color: var(--text);
-}
-.arsenal-spec {
-font-size: 0.78rem;
-color: var(--text-muted);
-line-height: 1.4;
-}
-.arsenal-purpose {
+.inv-title { font-size: 0.92rem; font-weight: 600; color: var(--text); }
+.inv-desc { font-size: 0.78rem; color: var(--text-muted); line-height: 1.4; }
+.inv-use {
 font-size: 0.72rem;
 color: #7ee787;
 background: rgba(46, 160, 67, 0.1);
 padding: 4px 8px;
 border-radius: 4px;
 border-left: 3px solid var(--green);
+margin-top: 4px;
 }
-​/* Caution cards */
-.caution-grid {
+​/* Caution Zones (Moved to the bottom) */
+.grid-caution {
 display: grid;
 grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
-gap: 12px;
-margin-bottom: 28px;
+gap: 10px;
+margin-top: 14px;
+margin-bottom: 24px;
 }
 .caution-card {
 background: var(--surface);
 border: 1px solid var(--border);
-border-radius: 8px;
-padding: 12px;
+border-radius: 6px;
+padding: 10px 12px;
 }
-.caution-card strong {
-display: block;
-font-size: 0.8rem;
-color: var(--primary);
-text-transform: uppercase;
-margin-bottom: 4px;
-}
-.caution-card p { font-size: 0.75rem; color: var(--text-muted); line-height: 1.4; }
-​/* SVG Architecture Diagram */
-.diagram-box {
-background: var(--surface);
-border: 1px solid var(--border);
-border-radius: 8px;
-padding: 16px;
-margin-bottom: 24px;
-overflow-x: auto;
-}
-.diagram-svg { width: 100%; min-width: 650px; height: auto; display: block; }
-​/* Task Checklist */
-.task-stack { display: flex; flex-direction: column; gap: 10px; }
-.task-item {
-background: var(--surface);
-border: 1px solid var(--border);
-border-radius: 8px;
-padding: 12px 16px;
-display: flex;
-align-items: flex-start;
-gap: 14px;
-transition: opacity 0.2s, border-color 0.2s;
-}
-.task-item.is-done {
-opacity: 0.45;
-background: #101418;
-border-color: #1f242c;
-}
-.task-item.is-done .task-title { text-decoration: line-through; }
-​.task-checkbox {
-width: 22px;
-height: 22px;
-margin-top: 2px;
-cursor: pointer;
-accent-color: var(--green);
-flex-shrink: 0;
-touch-action: manipulation;
-}
-.task-content { flex-grow: 1; }
-.task-head {
-display: flex;
-justify-content: space-between;
-align-items: baseline;
-margin-bottom: 4px;
-flex-wrap: wrap;
-gap: 6px;
-}
-.task-title { font-size: 0.92rem; font-weight: 600; color: var(--text); }
-.task-tag {
-font-size: 0.7rem;
-font-weight: 700;
-text-transform: uppercase;
-padding: 2px 8px;
-border-radius: 4px;
-background: var(--surface-card);
-}
-.tag-daily { color: var(--blue); border: 1px solid #1f6feb; }
-.tag-weekly { color: var(--green); border: 1px solid #238636; }
-.tag-bi-weekly { color: var(--yellow); border: 1px solid #9e6a03; }
-.tag-monthly { color: var(--orange); border: 1px solid #bd561d; }
-.tag-quarterly { color: var(--purple); border: 1px solid #8957e5; }
-.tag-half-yearly { color: #f778ba; border: 1px solid #bf4b8a; }
-.tag-yearly { color: #ff7b72; border: 1px solid var(--primary); }
-​.task-details {
-font-size: 0.82rem;
-color: var(--text-muted);
-line-height: 1.4;
-margin-bottom: 4px;
-}
-.task-meta {
-font-size: 0.76rem;
-color: #79c0ff;
-}
+.caution-card h3 { font-size: 0.78rem; color: var(--primary); text-transform: uppercase; margin-bottom: 4px; }
+.caution-card p { font-size: 0.74rem; color: var(--text-muted); line-height: 1.35; }
 ​/* Rules Grid */
 .rules-grid {
 display: grid;
 grid-template-columns: 1fr 1fr;
-gap: 14px;
-margin-top: 20px;
+gap: 12px;
+margin-top: 14px;
+margin-bottom: 20px;
 }
 @media (max-width: 600px) { .rules-grid { grid-template-columns: 1fr; } }
 .rule-box {
 border: 1px solid var(--border);
-border-radius: 8px;
-padding: 14px;
+border-radius: 6px;
+padding: 12px;
 background: var(--surface);
 }
 .rule-box.do { border-left: 4px solid var(--green); }
 .rule-box.dont { border-left: 4px solid var(--primary); }
-.rule-box h3 { font-size: 0.85rem; text-transform: uppercase; margin-bottom: 8px; }
+.rule-box h3 { font-size: 0.82rem; text-transform: uppercase; margin-bottom: 6px; }
 .rule-box.do h3 { color: var(--green); }
 .rule-box.dont h3 { color: var(--primary); }
-.rule-box ul { padding-left: 18px; font-size: 0.8rem; color: var(--text-muted); }
-.rule-box li { margin-bottom: 6px; }
-​/* Print Styles */
+.rule-box ul { padding-left: 16px; font-size: 0.76rem; color: var(--text-muted); }
+.rule-box li { margin-bottom: 4px; }
+​/* Print Stylesheet */
 @media print {
 body { background: #fff !important; color: #000 !important; padding: 0; }
-.filter-bar, .badge-tag, .utility-btns { display: none !important; }
-.arsenal-card, .diagram-box, .caution-card, .task-item, .rule-box {
+.tab-nav, .filter-bar, .badge-tag { display: none !important; }
+.tab-content { display: block !important; }
+.inv-card, .caution-card, .task-item, .rule-box {
 background: #fff !important;
 border: 1px solid #ccc !important;
 color: #000 !important;
 }
-.task-title, h1, h2, strong, .arsenal-title { color: #000 !important; }
-.task-details, .task-meta, .caution-card p, .rule-box ul, .arsenal-spec { color: #333 !important; }
-.task-checkbox { border-color: #000 !important; }
-.diagram-svg text { fill: #000 !important; }
-.diagram-svg rect, .diagram-svg path { stroke: #333 !important; }
+.task-title, h1, h2, h3, .inv-title { color: #000 !important; }
+.task-desc, .task-meta, .inv-desc, .caution-card p, .rule-box ul { color: #333 !important; }
+.task-check { border-color: #000 !important; }
 }
 </style>
 </head>
@@ -305,447 +275,509 @@ color: #000 !important;
 <header>
 <div>
 <h1>Triumph Scrambler 400 X</h1>
-<div class="subtitle">Complete Garage Arsenal, Hand-Wash & Periodic Protocol</div>
+<div class="subtitle">Complete Hand-Wash Protocol & Garage Arsenal</div>
 </div>
 <div class="badge-tag">Carnival Red Edition</div>
 </header>
-​<!-- GARAGE ARSENAL & INVENTORY -->
-<h2>Garage Equipment & Chemical Arsenal</h2>
-<div class="arsenal-grid">
-<!-- Item 1 -->
-<div class="arsenal-card">
-<div class="arsenal-head">
-<span class="arsenal-category">Hardware</span>
-<span class="arsenal-status">Essential</span>
+​<!-- MAIN NAVIGATION TABS -->
+<div class="tab-nav">
+<button type="button" class="tab-btn active" onclick="switchTab('checklist', this)">Maintenance Protocol</button>
+<button type="button" class="tab-btn" onclick="switchTab('inventory', this)">Required Inventory & Arsenal</button>
 </div>
-<div class="arsenal-title">2L Manual Pump Pressure Foamer</div>
-<div class="arsenal-spec">Hand pump foam generator with pressure-relief valve. Creates dense clinging foam without garden taps or electric pressure washers.</div>
-<div class="arsenal-purpose">Purpose: Safe touchless pre-wash dirt breakdown</div>
-</div>
-​<!-- Item 2 -->
-<div class="arsenal-card">
-<div class="arsenal-head">
-<span class="arsenal-category">Textiles</span>
-<span class="arsenal-status">Essential</span>
-</div>
-<div class="arsenal-title">Microfiber Arsenal (3 Tiers)</div>
-<div class="arsenal-spec">
-• Tier 1: Two 300 GSM short-pile towels (Dry daily fork wipe & mirrors)
-
-• Tier 2: Plush noodle wash mitt (Tank & clear coat)
-
-• Tier 3: 500+ GSM twisted-loop drying towel (Streak-free post-wash drying)
-</div>
-<div class="arsenal-purpose">Rule: Never mix dirty wheel rags with paint towels</div>
-</div>
-​<!-- Item 3 -->
-<div class="arsenal-card">
-<div class="arsenal-head">
-<span class="arsenal-category">Tools</span>
-<span class="arsenal-status">Essential</span>
-</div>
-<div class="arsenal-title">Dual-Bucket Setup + Sponges</div>
-<div class="arsenal-spec">Bucket 1 for fresh car shampoo solution; Bucket 2 with clean water for rinsing grit off your sponge before touching the paint again. One dedicated rough sponge for wheels and swingarm.</div>
-<div class="arsenal-purpose">Purpose: Eliminates 95% of accidental swirl marks</div>
-</div>
-​<!-- Item 4 -->
-<div class="arsenal-card">
-<div class="arsenal-head">
-<span class="arsenal-category">Chemicals</span>
-<span class="arsenal-status">Essential</span>
-</div>
-<div class="arsenal-title">pH-Neutral Bike Shampoo</div>
-<div class="arsenal-spec">Concentrated wax-safe, pH 7.0 formula. Cleanly encapsulates dirt without degrading factory protective clear coats or drying out rubber hoses and seals.</div>
-<div class="arsenal-purpose">Danger: Never use dishwashing liquid or laundry soap</div>
-</div>
-​<!-- Item 5 -->
-<div class="arsenal-card">
-<div class="arsenal-head">
-<span class="arsenal-category">Drivetrain</span>
-<span class="arsenal-status">Essential</span>
-</div>
-<div class="arsenal-title">3-Sided Grunge Brush + Kerosene</div>
-<div class="arsenal-spec">U-shaped stiff nylon brush that envelops all 3 exposed sides of the drive chain simultaneously. Kerosene dissolves baked grime without damaging synthetic nitrile O-rings.</div>
-<div class="arsenal-purpose">Purpose: Prevents premature drive sprocket wear</div>
-</div>
-​<!-- Item 6 -->
-<div class="arsenal-card">
-<div class="arsenal-head">
-<span class="arsenal-category">Lubrication</span>
-<span class="arsenal-status">Essential</span>
-</div>
-<div class="arsenal-title">Synthetic O/X-Ring Chain Lube</div>
-<div class="arsenal-spec">High-cling synthetic lube or wax-based formula with pinpoint applicator straw. Resists road dust accumulation and prevents high-speed centrifugal fling onto the Carnival Red tail.</div>
-<div class="arsenal-purpose">Application: Spray onto inner roller run after rides</div>
-</div>
-​<!-- Item 7 -->
-<div class="arsenal-card">
-<div class="arsenal-head">
-<span class="arsenal-category">Detailing</span>
-<span class="arsenal-status">Specialized</span>
-</div>
-<div class="arsenal-title">Long Flexible Bottle / Linkage Brush</div>
-<div class="arsenal-spec">Slim, 360-degree soft bristle wire-core brush that reaches between the rear swingarm cavity to scrub behind the monoshock spring and bottom linkage bolt safely.</div>
-<div class="arsenal-purpose">Purpose: Protects shock chrome shaft from dirt cakes</div>
-</div>
-​<!-- Item 8 -->
-<div class="arsenal-card">
-<div class="arsenal-head">
-<span class="arsenal-category">Preservation</span>
-<span class="arsenal-status">Periodic</span>
-</div>
-<div class="arsenal-title">ACF-50 / Anti-Corrosion Spray</div>
-<div class="arsenal-spec">Aerospace-grade moisture displacing barrier liquid. Sprayed onto a cloth to wipe fasteners, brake banjo bolts, footpeg pins, and unpainted alloy engine surfaces.</div>
-<div class="arsenal-purpose">Keep clear of brake pads and rotor discs</div>
-</div>
-</div>
-​<!-- INTERACTIVE ACTION TOOLBAR -->
-<h2>Service Schedule Filters</h2>
-<div class="filter-bar">
-<button type="button" class="filter-btn active" onclick="applyFilter('all', this)">All</button>
-<button type="button" class="filter-btn" onclick="applyFilter('Daily', this)">Daily</button>
-<button type="button" class="filter-btn" onclick="applyFilter('Weekly', this)">Weekly</button>
-<button type="button" class="filter-btn" onclick="applyFilter('Bi-Weekly', this)">Bi-Weekly</button>
-<button type="button" class="filter-btn" onclick="applyFilter('Monthly', this)">Monthly</button>
-<button type="button" class="filter-btn" onclick="applyFilter('Quarterly', this)">Quarterly</button>
-<button type="button" class="filter-btn" onclick="applyFilter('Half-Yearly', this)">Half-Yearly</button>
-<button type="button" class="filter-btn" onclick="applyFilter('Yearly', this)">Yearly</button>
+​<!-- TAB 1: MAINTENANCE CHECKLIST & PROTOCOL -->
+<div id="tab-checklist" class="tab-content active">
+​<!-- FILTERS PLACED RIGHT AT THE TOP -->
+<div class="filter-bar" id="filterBar">
+<button type="button" class="filter-btn active" onclick="filterItems('all', this)">All</button>
+<button type="button" class="filter-btn" onclick="filterItems('Daily', this)">Daily</button>
+<button type="button" class="filter-btn" onclick="filterItems('Weekly', this)">Weekly</button>
+<button type="button" class="filter-btn" onclick="filterItems('Bi-Weekly', this)">Bi-Weekly</button>
+<button type="button" class="filter-btn" onclick="filterItems('Monthly', this)">Monthly</button>
+<button type="button" class="filter-btn" onclick="filterItems('Quarterly', this)">Quarterly</button>
+<button type="button" class="filter-btn" onclick="filterItems('Half-Yearly', this)">Half-Yearly</button>
+<button type="button" class="filter-btn" onclick="filterItems('Yearly', this)">Yearly</button>
 ​<div class="utility-btns">
 <button type="button" class="btn-tool" onclick="window.print()">Print / PDF</button>
-<button type="button" class="btn-tool" onclick="resetAllChecks()">Reset</button>
-</div>
-</div>
-​<!-- ARCHITECTURE DIAGRAM -->
-<h2>Hand-Wash Flow & Caution Map</h2>
-<div class="diagram-box">
-<svg class="diagram-svg" viewBox="0 0 760 210" xmlns="http://www.w3.org/2000/svg">
-<!-- Step 1 -->
-<rect x="10" y="20" width="130" height="75" rx="6" fill="#161b22" stroke="#db6d28" stroke-width="2"/>
-<text x="75" y="44" fill="#db6d28" font-size="11" font-weight="bold" text-anchor="middle">1. COOLDOWN</text>
-<text x="75" y="62" fill="#8b949e" font-size="9" text-anchor="middle">45 min rest</text>
-<text x="75" y="78" fill="#f0f6fc" font-size="9" text-anchor="middle">Exhaust & Cat-Con</text>
-​<path d="M 140 57 L 165 57" stroke="#30363d" stroke-width="2"/>
-​<!-- Step 2 -->
-<rect x="165" y="20" width="130" height="75" rx="6" fill="#161b22" stroke="#bc8cff" stroke-width="2"/>
-<text x="230" y="44" fill="#bc8cff" font-size="11" font-weight="bold" text-anchor="middle">2. CHAIN SCRUB</text>
-<text x="230" y="62" fill="#8b949e" font-size="9" text-anchor="middle">Kerosene + Brush</text>
-<text x="230" y="78" fill="#f0f6fc" font-size="9" text-anchor="middle">Dry with clean rag</text>
-​<path d="M 295 57 L 320 57" stroke="#30363d" stroke-width="2"/>
-​<!-- Step 3 -->
-<rect x="320" y="20" width="130" height="75" rx="6" fill="#161b22" stroke="#238636" stroke-width="2"/>
-<text x="385" y="44" fill="#238636" font-size="11" font-weight="bold" text-anchor="middle">3. PUMP PRE-FOAM</text>
-<text x="385" y="62" fill="#8b949e" font-size="9" text-anchor="middle">2L manual foamer</text>
-<text x="385" y="78" fill="#f0f6fc" font-size="9" text-anchor="middle">2-min dirt soak</text>
-​<path d="M 450 57 L 475 57" stroke="#30363d" stroke-width="2"/>
-​<!-- Step 4 -->
-<rect x="475" y="20" width="130" height="75" rx="6" fill="#161b22" stroke="#58a6ff" stroke-width="2"/>
-<text x="540" y="44" fill="#58a6ff" font-size="11" font-weight="bold" text-anchor="middle">4. TWO-BUCKET</text>
-<text x="540" y="62" fill="#8b949e" font-size="9" text-anchor="middle">Mitt on paint first</text>
-<text x="540" y="78" fill="#f0f6fc" font-size="9" text-anchor="middle">Separate wheel sponge</text>
-​<path d="M 605 57 L 630 57" stroke="#30363d" stroke-width="2"/>
-​<!-- Step 5 -->
-<rect x="630" y="20" width="120" height="75" rx="6" fill="#161b22" stroke="#c1121f" stroke-width="2"/>
-<text x="690" y="44" fill="#c1121f" font-size="11" font-weight="bold" text-anchor="middle">5. TOWEL DRY</text>
-<text x="690" y="62" fill="#8b949e" font-size="9" text-anchor="middle">Twisted-loop towel</text>
-<text x="690" y="78" fill="#f0f6fc" font-size="9" text-anchor="middle">Chain lube & cure</text>
-​<!-- Bottom instruction callout -->
-<rect x="10" y="125" width="740" height="65" rx="6" fill="#101418" stroke="#30363d" stroke-width="1"/>
-<text x="25" y="150" fill="#f0f6fc" font-size="11" font-weight="bold">HAND WASHING PRESERVES CRITICAL SEALS:</text>
-<text x="25" y="170" fill="#8b949e" font-size="10">Gentle bucket rinsing eliminates the risk of high pressure forcing water past steering head bearings, USB flaps, and rear monoshock wiper seals.</text>
-</svg>
-</div>
-​<!-- CAUTION SPECS -->
-<h2>Zone Caution Specs</h2>
-<div class="caution-grid">
-<div class="caution-card">
-<strong>Speedo Pod & USB</strong>
-<p>Clean LCD/analog unit and handlebar switchgear with a wrung-out damp microfiber cloth. Keep the rubber USB flap sealed tight.</p>
-</div>
-<div class="caution-card">
-<strong>Radiator Core</strong>
-<p>Pre-soak bugs with your pump foamer. Agitate gently with a soft horsehair detail brush; never dig fingers or stiff bristles into soft fins.</p>
-</div>
-<div class="caution-card">
-<strong>Cat-Con & Pipe</strong>
-<p>Allow the underbelly exhaust box to cool down 45 mins. Cold water on hot catalytic converters causes rapid stress contraction.</p>
-</div>
-<div class="caution-card">
-<strong>O-Ring Drive Chain</strong>
-<p>Clean chain first before washing the rest of the bike. Degrease with kerosene and dry completely before applying synthetic lube.</p>
-</div>
-<div class="caution-card">
-<strong>Rear Monoshock</strong>
-<p>Wash coils using the flexible bottle brush. Wipe chrome piston rod with a dedicated microfiber; never leave greasy chain sludge on the shaft.</p>
+<button type="button" class="btn-tool" onclick="resetChecklist()">Reset</button>
 </div>
 </div>
 ​<!-- SCHEDULED TASKS -->
-<h2>Scheduled Service Protocol</h2>
-<div class="task-stack" id="taskStack">
+<h2>Maintenance Checklist</h2>
+<div class="task-list">
 ​<!-- DAILY -->
 <div class="task-item" data-freq="Daily">
-<input type="checkbox" class="task-checkbox" id="chk_d1" onchange="toggleItem(this)">
-<div class="task-content">
-<div class="task-head">
-<span class="task-title">Dry Wipe Fork Stanchions</span>
-<span class="task-tag tag-daily">Daily (2 mins)</span>
+<input type="checkbox" class="task-check" id="chk_d1" onchange="toggleTask(this)">
+<div class="task-body">
+<div class="task-header">
+<span class="task-title">Wipe Golden Inverted Fork Stanchions</span>
+<span class="task-freq">Daily (2 mins)</span>
 </div>
-<div class="task-details">Take a dry, clean microfiber cloth and wipe off dried dust rings, grit, and road grime from the golden inverted fork tubes. Prevents scoring the internal rubber seals when the forks compress.</div>
-<div class="task-meta">Tool: Clean dry microfiber rag | Verification: Fork tubes feel completely glass-smooth.</div>
+<div class="task-desc">Use a clean dry microfiber cloth to wipe dust rings and dried insect residue from the lower gold travel area. Prevents abrasive grit from cutting the internal rubber fork seals during suspension compression.</div>
+<div class="task-meta">Tool: Clean dry microfiber | Verification: Golden stanchions feel silky smooth to touch.</div>
 </div>
 </div>
 ​<div class="task-item" data-freq="Daily">
-<input type="checkbox" class="task-checkbox" id="chk_d2" onchange="toggleItem(this)">
-<div class="task-content">
-<div class="task-head">
-<span class="task-title">Clean Headlamp Lens & Mirrors</span>
-<span class="task-tag tag-daily">Daily (2 mins)</span>
+<input type="checkbox" class="task-check" id="chk_d2" onchange="toggleTask(this)">
+<div class="task-body">
+<div class="task-header">
+<span class="task-title">Clean Vision Surfaces (Headlamp & Mirrors)</span>
+<span class="task-freq">Daily (2 mins)</span>
 </div>
-<div class="task-details">Lightly dampen a microfiber cloth with water and wipe insect splatters and fine dust off the round LED headlamp glass and rearview mirrors.</div>
-<div class="task-meta">Tool: Damp microfiber towel | Verification: Zero dust haze or streaks diffusing your headlight.</div>
+<div class="task-desc">Lightly dampen a microfiber towel with clean water to wipe traffic film, fine dust, and bug splatters off the round LED headlight lens and rearview mirror faces.</div>
+<div class="task-meta">Tool: Damp microfiber towel | Verification: Zero streaks or smudges diffusing nighttime light.</div>
 </div>
 </div>
 ​<!-- WEEKLY -->
 <div class="task-item" data-freq="Weekly">
-<input type="checkbox" class="task-checkbox" id="chk_w1" onchange="toggleItem(this)">
-<div class="task-content">
-<div class="task-head">
+<input type="checkbox" class="task-check" id="chk_w1" onchange="toggleTask(this)">
+<div class="task-body">
+<div class="task-header">
 <span class="task-title">Pre-Foam with Hand Pump Pressure Sprayer</span>
-<span class="task-tag tag-weekly">Weekly (15 mins)</span>
+<span class="task-tag task-freq">Weekly (15 mins)</span>
 </div>
-<div class="task-details">Fill your manual hand-pump pressure sprayer with water and 30-50ml of pH-neutral motorcycle shampoo. Pump to build pressure and mist the entire bike thoroughly. Let dwell for 2 minutes to loosen dirt without scratching.</div>
-<div class="task-meta">Tool: 1.5L-2L manual pump sprayer + pH shampoo | Verification: Heavy dust runs off in soapy drops.</div>
+<div class="task-desc">Fill your 2L manual pump sprayer with water and 40ml of pH-neutral shampoo. Pump to build pressure and mist the entire bike thoroughly. Let dwell for 2 minutes to encapsulate and loosen road dust touchlessly.</div>
+<div class="task-meta">Tool: 2L manual pump foamer + pH shampoo | Verification: Heavy silt runs off in thick soapy drips.</div>
 </div>
 </div>
 ​<div class="task-item" data-freq="Weekly">
-<input type="checkbox" class="task-checkbox" id="chk_w2" onchange="toggleItem(this)">
-<div class="task-content">
-<div class="task-head">
+<input type="checkbox" class="task-check" id="chk_w2" onchange="toggleTask(this)">
+<div class="task-body">
+<div class="task-header">
 <span class="task-title">Two-Bucket Hand Sponge Wash</span>
-<span class="task-tag tag-weekly">Weekly (15 mins)</span>
+<span class="task-freq">Weekly (15 mins)</span>
 </div>
-<div class="task-details">Bucket 1 (soapy water) & Bucket 2 (clean rinse water). Use a soft microfiber wash mitt or clean sponge on the Carnival Red tank and bodywork. Rinse the sponge in Bucket 2 after each section before reloading soap from Bucket 1. Use a separate sponge for wheels and swingarm.</div>
-<div class="task-meta">Tool: 2 buckets + 2 dedicated sponges/mitts | Verification: Water in soapy bucket stays free of gritty grit.</div>
-</div>
-</div>
-​<div class="task-item" data-freq="Weekly">
-<input type="checkbox" class="task-checkbox" id="chk_w3" onchange="toggleItem(this)">
-<div class="task-content">
-<div class="task-head">
-<span class="task-title">Gravity Bucket Rinse & Microfiber Dry</span>
-<span class="task-tag tag-weekly">Weekly (10 mins)</span>
-</div>
-<div class="task-details">Rinse soap using a garden mug or gentle hose pour (gravity flow, no high pressure). Follow up immediately with a large, plush 500+ GSM drying towel to absorb water droplets from tank crevices, engine fins, and switch blocks.</div>
-<div class="task-meta">Tool: Pouring mug/hose + plush drying towel | Verification: Zero standing water pools left to form hard water spots.</div>
+<div class="task-desc">Bucket 1 (soapy wash) and Bucket 2 (clean rinse). Use your soft microfiber wash mitt on the Carnival Red fuel tank and cockpit plastics first. Rinse the mitt in Bucket 2 between panels. Use a dedicated rough sponge strictly for wheels and swingarm.</div>
+<div class="task-meta">Tool: 2 buckets + wash mitt + wheel sponge | Verification: Soap bucket stays clear of coarse grit.</div>
 </div>
 </div>
 ​<div class="task-item" data-freq="Weekly">
-<input type="checkbox" class="task-checkbox" id="chk_w4" onchange="toggleItem(this)">
-<div class="task-content">
-<div class="task-head">
-<span class="task-title">Fluid Sight Glass & Coolant Check</span>
-<span class="task-tag tag-weekly">Weekly (2 mins)</span>
+<input type="checkbox" class="task-check" id="chk_w3" onchange="toggleTask(this)">
+<div class="task-body">
+<div class="task-header">
+<span class="task-title">Gravity Pour Rinse & Twisted-Loop Towel Dry</span>
+<span class="task-freq">Weekly (10 mins)</span>
 </div>
-<div class="task-details">Hold the bike vertically upright (off the side stand). Check the engine oil sight glass on the lower right crankcase to verify oil level sits between MIN and MAX. Verify the coolant reservoir level through the frame slot.</div>
-<div class="task-meta">Tool: Visual inspection | Verification: Oil is clean amber honey color; coolant at safe level.</div>
+<div class="task-desc">Rinse soap using a gentle gravity pour from a garden jug or open hose stream (no high pressure). Dry immediately with your 500+ GSM plush drying towel, drawing moisture out of bolt pockets and instrument rims.</div>
+<div class="task-meta">Tool: Water jug + 500+ GSM drying towel | Verification: Zero standing water drops to form hard water scale.</div>
+</div>
+</div>
+​<div class="task-item" data-freq="Weekly">
+<input type="checkbox" class="task-check" id="chk_w4" onchange="toggleTask(this)">
+<div class="task-body">
+<div class="task-header">
+<span class="task-title">Fluid Sight Glass & Reservoir Check</span>
+<span class="task-freq">Weekly (2 mins)</span>
+</div>
+<div class="task-desc">Hold the bike vertically upright (off the side stand). Inspect the oil sight glass on the lower right crankcase to confirm the honey-colored oil level sits between MIN and MAX. Verify coolant expansion bottle level behind the frame.</div>
+<div class="task-meta">Tool: Visual inspection | Verification: Oil is amber and transparent; coolant between safe markers.</div>
 </div>
 </div>
 ​<!-- BI-WEEKLY -->
 <div class="task-item" data-freq="Bi-Weekly">
-<input type="checkbox" class="task-checkbox" id="chk_bw1" onchange="toggleItem(this)">
-<div class="task-content">
-<div class="task-head">
-<span class="task-title">Drive Chain Manual Scrub</span>
-<span class="task-tag tag-bi-weekly">Bi-Weekly (20 mins)</span>
+<input type="checkbox" class="task-check" id="chk_bw1" onchange="toggleTask(this)">
+<div class="task-body">
+<div class="task-header">
+<span class="task-title">Drive Chain Degrease with Grunge Brush</span>
+<span class="task-freq">Bi-Weekly (20 mins)</span>
 </div>
-<div class="task-details">Bike OFF and in neutral. Apply kerosene with a brush or spray can onto the chain links. Scrub all four sides using a 3-sided grunge brush while rotating the rear wheel by hand. Wipe completely dry with an old cotton rag.</div>
-<div class="task-meta">Tool: Kerosene / chain cleaner + 3-sided grunge brush + cotton rag | Verification: Outer link plates are silver steel.</div>
+<div class="task-desc">Bike switched OFF in NEUTRAL. Apply pure kerosene or dedicated chain cleaner onto the chain links. Scrub all four sides using a 3-sided grunge brush while rotating the rear wheel by hand. Wipe completely dry with a cotton rag.</div>
+<div class="task-meta">Tool: Kerosene + 3-sided grunge brush + rag | Verification: Outer link plates shine silver with no black sludge.</div>
 </div>
 </div>
 ​<div class="task-item" data-freq="Bi-Weekly">
-<input type="checkbox" class="task-checkbox" id="chk_bw2" onchange="toggleItem(this)">
-<div class="task-content">
-<div class="task-head">
-<span class="task-title">Chain Lube Application with Shield</span>
-<span class="task-tag tag-bi-weekly">Bi-Weekly (10 mins)</span>
+<input type="checkbox" class="task-check" id="chk_bw2" onchange="toggleTask(this)">
+<div class="task-body">
+<div class="task-header">
+<span class="task-title">Drive Chain Lubrication with Cardboard Shield</span>
+<span class="task-freq">Bi-Weekly (10 mins)</span>
 </div>
-<div class="task-details">Place a piece of cardboard behind the lower chain run to prevent overspray onto your rear tire and disc rotor. Spray chain lubricant onto the inside edges of the rollers while spinning the wheel by hand. Let sit for 4–6 hours to dry.</div>
-<div class="task-meta">Tool: Chain lube can + cardboard shield | Verification: Rollers have an even thin film without pooling.</div>
+<div class="task-desc">Place a piece of cardboard behind the lower chain run to prevent overspray onto your rear tire and disc rotor. Spray synthetic O-ring lubricant onto the inside edges of the rollers while spinning the wheel by hand. Let cure 4-6 hours.</div>
+<div class="task-meta">Tool: O-ring chain lube + cardboard shield | Verification: Rollers have an even thin film with zero fling drips.</div>
 </div>
 </div>
 ​<!-- MONTHLY -->
 <div class="task-item" data-freq="Monthly">
-<input type="checkbox" class="task-checkbox" id="chk_m1" onchange="toggleItem(this)">
-<div class="task-content">
-<div class="task-head">
-<span class="task-title">Detail Rear Shock & Linkage with Bottle Brush</span>
-<span class="task-tag tag-monthly">Monthly (25 mins)</span>
+<input type="checkbox" class="task-check" id="chk_m1" onchange="toggleTask(this)">
+<div class="task-body">
+<div class="task-header">
+<span class="task-title">Detail Rear Monoshock & Linkage with Bottle Brush</span>
+<span class="task-freq">Monthly (30 mins)</span>
 </div>
-<div class="task-details">Dip a soft, long bottle brush or detailing brush in soapy water. Reach between the swingarm gap to scrub dirt cakes off the red/black spring coils and the lower mounting bolt. Rinse with a gentle water pour and wipe the chrome shaft clean.</div>
-<div class="task-meta">Tool: Long flexible bottle brush + soapy water | Verification: Chrome shock shaft clean with zero silt collar.</div>
+<div class="task-desc">Dip your long flexible bottle brush in soapy water. Reach between the swingarm gap to scrub caked red dust off the monoshock spring coils and bottom linkage bolt. Rinse with a gentle water pour and wipe the chrome shaft clean.</div>
+<div class="task-meta">Tool: Flexible bottle brush + soapy water | Verification: Chrome shock shaft clean with zero silt collar.</div>
 </div>
 </div>
 ​<div class="task-item" data-freq="Monthly">
-<input type="checkbox" class="task-checkbox" id="chk_m2" onchange="toggleItem(this)">
-<div class="task-content">
-<div class="task-head">
+<input type="checkbox" class="task-check" id="chk_m2" onchange="toggleTask(this)">
+<div class="task-body">
+<div class="task-header">
 <span class="task-title">Radiator Fin Hand Cleaning</span>
-<span class="task-tag tag-monthly">Monthly (15 mins)</span>
+<span class="task-freq">Monthly (15 mins)</span>
 </div>
-<div class="task-details">Spray diluted shampoo or APC through the radiator fins using your hand-pump sprayer. Let soften for 3 minutes. Gently agitate bug debris with an ultra-soft paintbrush (never use stiff wire). Rinse by pouring water from the top/front.</div>
-<div class="task-meta">Tool: Hand pump sprayer + soft detailing paintbrush | Verification: Aluminum fins clear of bugs and mud.</div>
+<div class="task-desc">Spray diluted shampoo or APC through the radiator fins using your hand-pump foamer. Let soften for 3 minutes. Gently agitate bug debris with a soft detailing paintbrush (never stiff wire). Rinse by pouring water from the top/front.</div>
+<div class="task-meta">Tool: Hand pump foamer + soft paintbrush | Verification: Aluminum cooling matrix clean without bent fins.</div>
 </div>
 </div>
 ​<!-- QUARTERLY -->
 <div class="task-item" data-freq="Quarterly">
-<input type="checkbox" class="task-checkbox" id="chk_q1" onchange="toggleItem(this)">
-<div class="task-content">
-<div class="task-head">
+<input type="checkbox" class="task-check" id="chk_q1" onchange="toggleTask(this)">
+<div class="task-body">
+<div class="task-header">
 <span class="task-title">Hand Wax / Sealant on Carnival Red Tank</span>
-<span class="task-tag tag-quarterly">Quarterly (3 Months)</span>
+<span class="task-freq">Quarterly (3 Months)</span>
 </div>
-<div class="task-details">Apply a thin layer of paste wax or liquid synthetic sealant to the painted tank using a foam applicator pad. Work in circular motions. Let it haze for 5–10 minutes, then buff off with a dry microfiber cloth for UV shine and water beading.</div>
-<div class="task-meta">Tool: Foam wax applicator pad + clean buffing microfiber | Verification: Water beads tightly on tank surface.</div>
+<div class="task-desc">Apply a thin layer of paste wax or liquid synthetic sealant to the fuel tank using a foam applicator pad. Work in small circular passes. Let it haze for 5–10 minutes, then buff off with a plush microfiber towel for UV shine and water beading.</div>
+<div class="task-meta">Tool: Foam wax applicator + clean buffing towel | Verification: Water beads tightly on tank surface.</div>
 </div>
 </div>
 ​<div class="task-item" data-freq="Quarterly">
-<input type="checkbox" class="task-checkbox" id="chk_q2" onchange="toggleItem(this)">
-<div class="task-content">
-<div class="task-head">
+<input type="checkbox" class="task-check" id="chk_q2" onchange="toggleTask(this)">
+<div class="task-body">
+<div class="task-header">
 <span class="task-title">Condition Unpainted Textured Plastics</span>
-<span class="task-tag tag-quarterly">Quarterly (3 Months)</span>
+<span class="task-freq">Quarterly (3 Months)</span>
 </div>
-<div class="task-details">Pour a few drops of water-based UV plastic restorer onto a sponge. Wipe the front headlight cowl, rear hugger, chain guard, and mud flaps to protect black plastic from chalky fading in Hyderabad heat.</div>
-<div class="task-meta">Tool: Small kitchen sponge + UV plastic restorer | Verification: Deep matte black finish without greasy residue.</div>
+<div class="task-desc">Pour a few drops of water-based UV plastic restorer onto a sponge. Wipe the front beak cowl, rear hugger, chain guard, and mud flaps to protect black plastic from chalky oxidation under harsh sun.</div>
+<div class="task-meta">Tool: Small sponge + UV plastic restorer | Verification: Deep satin black finish without greasy residue.</div>
 </div>
 </div>
 ​<div class="task-item" data-freq="Quarterly">
-<input type="checkbox" class="task-checkbox" id="chk_q3" onchange="toggleItem(this)">
-<div class="task-content">
-<div class="task-head">
-<span class="task-title">Fasteners & Frame Anti-Corrosion Wipe</span>
-<span class="task-tag tag-quarterly">Quarterly (3 Months)</span>
+<input type="checkbox" class="task-check" id="chk_q3" onchange="toggleTask(this)">
+<div class="task-body">
+<div class="task-header">
+<span class="task-title">Fasteners & Frame Anti-Corrosion Barrier</span>
+<span class="task-freq">Quarterly (3 Months)</span>
 </div>
-<div class="task-details">Spray an anti-corrosion spray (ACF-50 or WD-40 Specialist Corrosion Inhibitor) directly onto a microfiber cloth (never spray onto the bike). Wipe over exposed zinc bolt heads, footpeg pins, and swingarm pivot covers.</div>
-<div class="task-meta">Tool: Dedicated oily microfiber rag + anti-corrosion spray | Verification: Thin invisible film protecting bolts.</div>
+<div class="task-desc">Spray an anti-corrosion barrier (ACF-50 or WD-40 Specialist Corrosion Inhibitor) onto a microfiber rag (never spray directly onto the bike). Wipe over exposed zinc bolt heads, footpeg pins, and swingarm pivot covers.</div>
+<div class="task-meta">Tool: Dedicated oily microfiber rag + ACF-50 | Verification: Invisible microscopic film halting bolt rust.</div>
 </div>
 </div>
 ​<!-- HALF-YEARLY -->
 <div class="task-item" data-freq="Half-Yearly">
-<input type="checkbox" class="task-checkbox" id="chk_hy1" onchange="toggleItem(this)">
-<div class="task-content">
-<div class="task-head">
-<span class="task-title">Battery Terminal Check & Dielectric Grease</span>
-<span class="task-tag tag-half-yearly">Half-Yearly (6 Months)</span>
+<input type="checkbox" class="task-check" id="chk_hy1" onchange="toggleTask(this)">
+<div class="task-body">
+<div class="task-header">
+<span class="task-title">Battery Terminal Service & Dielectric Grease</span>
+<span class="task-freq">Half-Yearly (6 Months)</span>
 </div>
-<div class="task-details">Remove seat with key. Check battery terminals for whitish acid dust. Disconnect negative terminal first, wipe posts clean with a small brass wire brush, retighten firmly, and apply a dab of petroleum jelly or dielectric grease.</div>
-<div class="task-meta">Tool: Small brass brush / toothbrush + dielectric grease | Verification: Terminals clean and insulated.</div>
+<div class="task-desc">Remove seat with key. Check battery terminals for whitish acid powder. Disconnect negative terminal first, wipe posts clean with a small brass wire brush, retighten firmly, and apply a dab of dielectric grease.</div>
+<div class="task-meta">Tool: Small brass brush + dielectric grease | Verification: Terminals clean and insulated.</div>
 </div>
 </div>
 ​<div class="task-item" data-freq="Half-Yearly">
-<input type="checkbox" class="task-checkbox" id="chk_hy2" onchange="toggleItem(this)">
-<div class="task-content">
-<div class="task-head">
-<span class="task-title">Pivot Joints Lubrication</span>
-<span class="task-tag tag-half-yearly">Half-Yearly (6 Months)</span>
+<input type="checkbox" class="task-check" id="chk_hy2" onchange="toggleTask(this)">
+<div class="task-body">
+<div class="task-header">
+<span class="task-title">Chassis Pivot Point Lubrication</span>
+<span class="task-freq">Half-Yearly (6 Months)</span>
 </div>
-<div class="task-details">Clean dirt off pivot pins using a rag. Apply a few drops of 3-in-1 machine oil or white lithium grease to the side-stand spring hinge, rider footpeg pins, and clutch lever pivot bolt.</div>
-<div class="task-meta">Tool: White lithium grease spray or machine oil | Verification: Side stand snaps back crisply without creaking.</div>
+<div class="task-desc">Clean dirt off pivot pins using a rag. Apply a few drops of white lithium grease or 3-in-1 machine oil to the side-stand spring hinge, rider footpeg pins, and clutch lever pivot bolt.</div>
+<div class="task-meta">Tool: White lithium grease / 3-in-1 oil | Verification: Stand and footpegs snap back crisply with zero creak.</div>
 </div>
 </div>
 ​<!-- YEARLY -->
 <div class="task-item" data-freq="Yearly">
-<input type="checkbox" class="task-checkbox" id="chk_y1" onchange="toggleItem(this)">
-<div class="task-content">
-<div class="task-head">
-<span class="task-title">Hand Clay Bar Decontamination</span>
-<span class="task-tag tag-yearly">Yearly (Annual)</span>
+<input type="checkbox" class="task-check" id="chk_y1" onchange="toggleTask(this)">
+<div class="task-body">
+<div class="task-header">
+<span class="task-title">Full Clay Bar Paint Decontamination</span>
+<span class="task-freq">Yearly (Annual)</span>
 </div>
-<div class="task-details">After a thorough hand wash, spray soapy water as lubricant on the tank. Gently glide an automotive detailing clay bar over the surface. It will pick up embedded industrial fallout, brake dust, and tree sap that normal washing cannot lift.</div>
-<div class="task-meta">Tool: Fine clay bar + soapy water spray | Verification: Paint surface feels like smooth glass.</div>
+<div class="task-desc">After washing, spray soapy water as lubricant over the tank. Gently glide a detailing clay bar over the surface to pull out embedded industrial fallout, brake dust, and tree sap before applying fresh sealant.</div>
+<div class="task-meta">Tool: Fine clay bar + soapy water spray | Verification: Paint clear coat feels as smooth as clean glass.</div>
 </div>
 </div>
 ​</div>
-​<!-- RULES GRID -->
+​<!-- HARDWARE CAUTION ZONES (MOVED TO BOTTOM) -->
+<h2>Hardware Caution Zones (Keep at Bottom)</h2>
+<div class="grid-caution">
+<div class="caution-card">
+<h3>Zone 1: Cluster & USB</h3>
+<p>Keep USB-C flap sealed tight. Use a wrung-out damp microfiber cloth only. Never pour water into handlebar switch blocks.</p>
+</div>
+<div class="caution-card">
+<h3>Zone 2: Radiator Core</h3>
+<p>Pre-soak bugs with pump foam. Agitate gently with a soft paintbrush. Never dig fingers or wire brushes into thin fins.</p>
+</div>
+<div class="caution-card">
+<h3>Zone 3: Cat-Con & Pipe</h3>
+<p>Allow 45-min cooldown before applying water. Cold water on hot headers induces rapid contraction and warping.</p>
+</div>
+<div class="caution-card">
+<h3>Zone 4: O-Ring Chain</h3>
+<p>Use kerosene or dedicated chain cleaner only. Never use petrol or diesel as they dissolve the synthetic nitrile O-rings.</p>
+</div>
+<div class="caution-card">
+<h3>Zone 5: Monoshock Wiper</h3>
+<p>Clean coils with a soft bottle brush. Wipe chrome piston rod clean; never leave tacky chain lube overspray on the shaft.</p>
+</div>
+</div>
+​<!-- DO'S AND DON'TS -->
 <div class="rules-grid">
 <div class="rule-box do">
 <h3>Do's (Hand Washing)</h3>
 <ul>
-<li>Let engine and exhaust pipes cool down at least 45 minutes before starting.</li>
-<li>Pre-soak mud using the pump spray foamer before wiping with any sponge.</li>
-<li>Use two separate sponges: one for upper paint, one for greasy wheels.</li>
-<li>Shield brake calipers and rear tire whenever spraying chain lube.</li>
+<li>Allow exhaust and engine to cool down 45 minutes before washing.</li>
+<li>Pre-foam with manual sprayer to lift dirt touchlessly before sponging.</li>
+<li>Keep separate sponges: one for upper paint, one for greasy wheels.</li>
+<li>Shield rear brake rotor and tire with cardboard when spraying chain lube.</li>
 </ul>
 </div>
 <div class="rule-box dont">
 <h3>Don'ts (Hand Washing)</h3>
 <ul>
-<li>NEVER dry-wipe dirty paint panels (will cause swirl scratch marks).</li>
-<li>NEVER use household dish soap or Vim (strips protective wax layers).</li>
-<li>NEVER run the motorcycle in gear on a paddock stand while cleaning the chain.</li>
-<li>NEVER use stiff wire brushes on the soft aluminum radiator fins.</li>
+<li>NEVER dry-wipe dirty painted body panels (induces instant swirls).</li>
+<li>NEVER use household dish soaps (Vim/Pril strip protective wax).</li>
+<li>NEVER run the motorcycle in gear on a stand while scrubbing the chain.</li>
+<li>NEVER spray silicone or degreaser anywhere near brake pads or rotors.</li>
 </ul>
 </div>
 </div>
+​</div>
+​<!-- TAB 2: INVENTORY & ARSENAL (OWN DEDICATED TAB) -->
+<div id="tab-inventory" class="tab-content">
+<h2>Complete Garage Equipment & Chemical Arsenal</h2>
+<p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 14px;">Track and check off every tool, textile, and chemical needed for maintaining the Triumph Scrambler 400 X.</p>
+​<div class="inventory-grid">
+​<!-- Item 1 -->
+<div class="inv-card" id="card_inv1">
+<div class="inv-head">
+<span class="inv-cat">Hardware</span>
+<label class="inv-check-label">
+<input type="checkbox" class="task-check" id="inv1" onchange="toggleInv(this, 'card_inv1')"> Acquired
+</label>
 </div>
+<div class="inv-title">1.5L - 2L Manual Pump Pressure Foamer</div>
+<div class="inv-desc">Hand-pump bottle with adjustable foaming nozzle and safety pressure-release valve. Produces thick, clinging foam without needing garden hose taps or electric pressure washers.</div>
+<div class="inv-use">Role: Touchless dirt pre-soak & radiator bug release</div>
+</div>
+​<!-- Item 2 -->
+<div class="inv-card" id="card_inv2">
+<div class="inv-head">
+<span class="inv-cat">Textiles</span>
+<label class="inv-check-label">
+<input type="checkbox" class="task-check" id="inv2" onchange="toggleInv(this, 'card_inv2')"> Acquired
+</label>
+</div>
+<div class="inv-title">Plush Microfiber Wash Mitt</div>
+<div class="inv-desc">Soft chenille or micro-noodle wash mitt used strictly on the Carnival Red tank, front flyscreen, and painted surfaces to trap dirt deep in fibers without scratching.</div>
+<div class="inv-use">Rule: Never touch greasy wheels or chain with this mitt</div>
+</div>
+​<!-- Item 3 -->
+<div class="inv-card" id="card_inv3">
+<div class="inv-head">
+<span class="inv-cat">Textiles</span>
+<label class="inv-check-label">
+<input type="checkbox" class="task-check" id="inv3" onchange="toggleInv(this, 'card_inv3')"> Acquired
+</label>
+</div>
+<div class="inv-title">500+ GSM Twisted-Loop Drying Towel</div>
+<div class="inv-desc">High-density drying towel (minimum 40x60 cm). Absorbs water instantly on contact to prevent hard water mineral scale from baking onto hot engine fins and tank clear coat.</div>
+<div class="inv-use">Role: Streak-free post-wash water removal</div>
+</div>
+​<!-- Item 4 -->
+<div class="inv-card" id="card_inv4">
+<div class="inv-head">
+<span class="inv-cat">Textiles</span>
+<label class="inv-check-label">
+<input type="checkbox" class="task-check" id="inv4" onchange="toggleInv(this, 'card_inv4')"> Acquired
+</label>
+</div>
+<div class="inv-title">3x 300 GSM Short-Pile Utility Towels</div>
+<div class="inv-desc">Workhorse microfiber cloths reserved for specific tasks:
+
+• Towel A: Daily dry wipe of golden front fork stanchions.
+
+• Towel B: Mirrors and LED headlamp lens.
+
+• Towel C: Oily engine wiping and ACF-50 frame barrier.</div>
+<div class="inv-use">Role: Precision wiping & stanchion seal protection</div>
+</div>
+​<!-- Item 5 -->
+<div class="inv-card" id="card_inv5">
+<div class="inv-head">
+<span class="inv-cat">Tools</span>
+<label class="inv-check-label">
+<input type="checkbox" class="task-check" id="inv5" onchange="toggleInv(this, 'card_inv5')"> Acquired
+</label>
+</div>
+<div class="inv-title">Two Plastic Wash Buckets + Wheel Sponge</div>
+<div class="inv-desc">Bucket 1 for diluted shampoo solution; Bucket 2 for clean water rinse to flush grit from the mitt. One separate porous sponge reserved solely for lower rims, swingarm, and exhaust underside.</div>
+<div class="inv-use">Role: Two-bucket grit isolation system</div>
+</div>
+​<!-- Item 6 -->
+<div class="inv-card" id="card_inv6">
+<div class="inv-head">
+<span class="inv-cat">Drivetrain</span>
+<label class="inv-check-label">
+<input type="checkbox" class="task-check" id="inv6" onchange="toggleInv(this, 'card_inv6')"> Acquired
+</label>
+</div>
+<div class="inv-title">3-Sided Grunge Chain Brush</div>
+<div class="inv-desc">Stiff U-shaped polypropylene bristle brush engineered to wrap around all 3 exposed sides of the 520 chain run at once, with a straight tail brush for rear sprocket teeth.</div>
+<div class="inv-use">Role: Deep mechanical chain dirt breakdown</div>
+</div>
+​<!-- Item 7 -->
+<div class="inv-card" id="card_inv7">
+<div class="inv-head">
+<span class="inv-cat">Suspension</span>
+<label class="inv-check-label">
+<input type="checkbox" class="task-check" id="inv7" onchange="toggleInv(this, 'card_inv7')"> Acquired
+</label>
+</div>
+<div class="inv-title">Long Flexible Bottle / Linkage Brush</div>
+<div class="inv-desc">Slim, 360-degree soft bristle wire brush that easily snakes through the tight swingarm gap to scrub caked road silt from the rear shock spring coils and lower linkage pivot.</div>
+<div class="inv-use">Role: Clean monoshock cavity without scraping paint</div>
+</div>
+​<!-- Item 8 -->
+<div class="inv-card" id="card_inv8">
+<div class="inv-head">
+<span class="inv-cat">Chemicals</span>
+<label class="inv-check-label">
+<input type="checkbox" class="task-check" id="inv8" onchange="toggleInv(this, 'card_inv8')"> Acquired
+</label>
+</div>
+<div class="inv-title">pH-Neutral Bike Shampoo (Wax-Safe)</div>
+<div class="inv-desc">Concentrated automotive/bike wash soap formulated at pH 7.0. Provides high lubricity to glide dirt away without stripping factory wax, dulling paint, or drying rubber hoses.</div>
+<div class="inv-use">Danger: Never use dishwashing liquids or clothes detergents</div>
+</div>
+​<!-- Item 9 -->
+<div class="inv-card" id="card_inv9">
+<div class="inv-head">
+<span class="inv-cat">Chemicals</span>
+<label class="inv-check-label">
+<input type="checkbox" class="task-check" id="inv9" onchange="toggleInv(this, 'card_inv9')"> Acquired
+</label>
+</div>
+<div class="inv-title">Pure Kerosene (Chain Degreaser)</div>
+<div class="inv-desc">The official factory-recommended solvent for O-ring and X-ring chains. Instantly dissolves baked fling gunk and tar without swelling or destroying the synthetic rubber O-rings.</div>
+<div class="inv-use">Danger: Never use petrol or diesel (petrol destroys O-rings)</div>
+</div>
+​<!-- Item 10 -->
+<div class="inv-card" id="card_inv10">
+<div class="inv-head">
+<span class="inv-cat">Chemicals</span>
+<label class="inv-check-label">
+<input type="checkbox" class="task-check" id="inv10" onchange="toggleInv(this, 'card_inv10')"> Acquired
+</label>
+</div>
+<div class="inv-title">Synthetic O-Ring Chain Lubricant</div>
+<div class="inv-desc">High-tack synthetic lubricant or wax formula equipped with a pinpoint straw nozzle. Penetrates between inner rollers and side plates while resisting high-speed centrifugal fling.</div>
+<div class="inv-use">Role: Extends drivetrain life and sprocket teeth</div>
+</div>
+​<!-- Item 11 -->
+<div class="inv-card" id="card_inv11">
+<div class="inv-head">
+<span class="inv-cat">Protection</span>
+<label class="inv-check-label">
+<input type="checkbox" class="task-check" id="inv11" onchange="toggleInv(this, 'card_inv11')"> Acquired
+</label>
+</div>
+<div class="inv-title">ACF-50 Anti-Corrosion Spray</div>
+<div class="inv-desc">Aviation-grade corrosion barrier fluid. Applied via microfiber cloth onto chassis bolt heads, footpeg pivots, engine case bolts, and electrical connections to halt oxidation.</div>
+<div class="inv-use">Safety: Keep strictly off brake rotors and pads</div>
+</div>
+​<!-- Item 12 -->
+<div class="inv-card" id="card_inv12">
+<div class="inv-head">
+<span class="inv-cat">Protection</span>
+<label class="inv-check-label">
+<input type="checkbox" class="task-check" id="inv12" onchange="toggleInv(this, 'card_inv12')"> Acquired
+</label>
+</div>
+<div class="inv-title">Carnauba Paste Wax & UV Trim Restorer</div>
+<div class="inv-desc">Carnauba wax for sealing the deep Carnival Red paint against UV sun haze; water-based satin trim restorer for front beak and mud flaps to prevent chalky gray discoloration.</div>
+<div class="inv-use">Role: Quarterly bodywork preservation</div>
+</div>
+​</div>
+</div>
+​</div>
 ​<script>
-// 1. Instant Global Filter Action (Guaranteed to execute on mobile & desktop)
-window.applyFilter = function(freq, buttonElement) {
-var buttons = document.getElementsByClassName('filter-btn');
+// 1. Main Tab Switching Logic
+function switchTab(tabName, button) {
+var tabs = document.querySelectorAll('.tab-btn');
+for (var i = 0; i < tabs.length; i++) {
+tabs[i].className = 'tab-btn';
+}
+button.className = 'tab-btn active';
+​document.getElementById('tab-checklist').className = 'tab-content';
+document.getElementById('tab-inventory').className = 'tab-content';
+​if (tabName === 'checklist') {
+document.getElementById('tab-checklist').className = 'tab-content active';
+} else {
+document.getElementById('tab-inventory').className = 'tab-content active';
+}
+}
+​// 2. Checklist Filter Logic (Filter bar at top)
+function filterItems(freq, button) {
+var buttons = document.querySelectorAll('#filterBar .filter-btn');
 for (var i = 0; i < buttons.length; i++) {
-buttons[i].classList.remove('active');
+buttons[i].className = 'filter-btn';
 }
-if (buttonElement) {
-buttonElement.classList.add('active');
-}
-​var tasks = document.getElementsByClassName('task-item');
-for (var j = 0; j < tasks.length; j++) {
-var item = tasks[j];
-var itemFreq = item.getAttribute('data-freq');
+button.className = 'filter-btn active';
+​var items = document.querySelectorAll('.task-item');
+for (var j = 0; j < items.length; j++) {
+var itemFreq = items[j].getAttribute('data-freq');
 if (freq === 'all' || itemFreq === freq) {
-item.style.display = 'flex';
+items[j].style.display = 'flex';
 } else {
-item.style.display = 'none';
+items[j].style.display = 'none';
 }
 }
-};
-​// 2. Instant Item Checking & Persistent LocalStorage
-window.toggleItem = function(checkbox) {
-var parent = checkbox.closest('.task-item');
-var key = 'scrambler_v3_' + checkbox.id;
+}
+​// 3. Checklist Checkbox Toggle & Persistence
+function toggleTask(checkbox) {
+var parent = checkbox.parentElement;
 if (checkbox.checked) {
-if (parent) parent.classList.add('is-done');
-try { localStorage.setItem(key, 'true'); } catch(e) {}
+parent.className = 'task-item done';
+localStorage.setItem('scrambler_chk_' + checkbox.id, '1');
 } else {
-if (parent) parent.classList.remove('is-done');
-try { localStorage.removeItem(key); } catch(e) {}
+parent.className = 'task-item';
+localStorage.removeItem('scrambler_chk_' + checkbox.id);
+}
+}
+​// 4. Inventory Checkbox Toggle & Persistence
+function toggleInv(checkbox, cardId) {
+var card = document.getElementById(cardId);
+if (checkbox.checked) {
+if (card) card.className = 'inv-card checked';
+localStorage.setItem('scrambler_inv_' + checkbox.id, '1');
+} else {
+if (card) card.className = 'inv-card';
+localStorage.removeItem('scrambler_inv_' + checkbox.id);
+}
+}
+​// 5. Restore All Saved States on Page Load
+window.onload = function() {
+// Restore checklist tasks
+var taskBoxes = document.querySelectorAll('.task-item .task-check');
+for (var i = 0; i < taskBoxes.length; i++) {
+if (localStorage.getItem('scrambler_chk_' + taskBoxes[i].id) === '1') {
+taskBoxes[i].checked = true;
+taskBoxes[i].parentElement.className = 'task-item done';
+}
+}
+​// Restore inventory items
+var invBoxes = document.querySelectorAll('.inv-card .task-check');
+for (var j = 0; j < invBoxes.length; j++) {
+if (localStorage.getItem('scrambler_inv_' + invBoxes[j].id) === '1') {
+invBoxes[j].checked = true;
+var card = invBoxes[j].closest('.inv-card');
+if (card) card.className = 'inv-card checked';
+}
 }
 };
-​// 3. Reset All Checked Items
-window.resetAllChecks = function() {
-if (confirm('Reset all checked items in your checklist?')) {
-var boxes = document.getElementsByClassName('task-checkbox');
-for (var i = 0; i < boxes.length; i++) {
-boxes[i].checked = false;
-var p = boxes[i].closest('.task-item');
-if (p) p.classList.remove('is-done');
-try { localStorage.removeItem('scrambler_v3_' + boxes[i].id); } catch(e) {}
+​// 6. Reset Checklist
+function resetChecklist() {
+if (confirm('Reset all checked items in your maintenance schedule?')) {
+var taskBoxes = document.querySelectorAll('.task-item .task-check');
+for (var i = 0; i < taskBoxes.length; i++) {
+taskBoxes[i].checked = false;
+taskBoxes[i].parentElement.className = 'task-item';
+localStorage.removeItem('scrambler_chk_' + taskBoxes[i].id);
 }
 }
-};
-​// 4. Restore Checkbox State on Initial Load
-window.addEventListener('load', function() {
-var boxes = document.getElementsByClassName('task-checkbox');
-for (var i = 0; i < boxes.length; i++) {
-var key = 'scrambler_v3_' + boxes[i].id;
-try {
-if (localStorage.getItem(key) === 'true') {
-boxes[i].checked = true;
-var p = boxes[i].closest('.task-item');
-if (p) p.classList.add('is-done');
 }
-} catch(e) {}
-}
-});
 </script>
 ​</body>
 </html>
