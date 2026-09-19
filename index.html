@@ -3,20 +3,22 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Triumph Scrambler 400 X - Hand Wash & Maintenance Protocol</title>
+<title>Triumph Scrambler 400 X - Garage Arsenal & Care Protocol</title>
 <style>
 :root {
 --primary: #c1121f;
---bg: #0f1416;
---surface: #182026;
---surface-card: #202b33;
---border: #2d3b45;
---text: #e6edf3;
---text-muted: #94a3b8;
---green: #2ea043;
---yellow: #e3b341;
---orange: #f0883e;
+--primary-hover: #9b0d18;
+--bg: #0d1117;
+--surface: #161b22;
+--surface-card: #21262d;
+--border: #30363d;
+--text: #f0f6fc;
+--text-muted: #8b949e;
+--green: #238636;
+--yellow: #d29922;
+--orange: #db6d28;
 --blue: #58a6ff;
+--purple: #bc8cff;
 }
 ​* { box-sizing: border-box; margin: 0; padding: 0; }
 body {
@@ -25,6 +27,7 @@ background-color: var(--bg);
 color: var(--text);
 line-height: 1.5;
 padding: 16px;
+-webkit-tap-highlight-color: transparent;
 }
 .container { max-width: 960px; margin: 0 auto; }
 ​header {
@@ -52,38 +55,30 @@ border-radius: 20px;
 font-size: 0.75rem;
 color: var(--text-muted);
 }
-​/* Hand Wash Kit Grid */
-.kit-grid {
-display: grid;
-grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-gap: 10px;
-margin-bottom: 20px;
-}
-.kit-card {
-background: var(--surface);
-border: 1px solid var(--border);
-border-radius: 6px;
-padding: 10px;
-font-size: 0.8rem;
-}
-.kit-card strong {
-color: var(--blue);
-display: block;
-margin-bottom: 3px;
+​/* Section Headings */
+h2 {
+font-size: 1.05rem;
 text-transform: uppercase;
-font-size: 0.75rem;
+letter-spacing: 0.5px;
+margin: 28px 0 14px;
+border-left: 4px solid var(--primary);
+padding-left: 10px;
+display: flex;
+align-items: center;
+gap: 8px;
 }
-.kit-card p { color: var(--text-muted); font-size: 0.75rem; }
-​/* Filter & Utility Toolbar */
+​/* Filter & Utility Toolbar - Solidified for Mobile Clicks */
 .filter-bar {
 display: flex;
 gap: 8px;
 flex-wrap: wrap;
 margin-bottom: 24px;
 background: var(--surface);
-padding: 10px;
+padding: 12px;
 border-radius: 8px;
 border: 1px solid var(--border);
+position: relative;
+z-index: 10;
 }
 .filter-btn {
 background: var(--surface-card);
@@ -92,12 +87,12 @@ color: var(--text-muted);
 padding: 8px 14px;
 border-radius: 6px;
 cursor: pointer;
-font-size: 0.8rem;
+font-size: 0.82rem;
 font-weight: 600;
-transition: all 0.2s ease;
-user-select: none;
+transition: all 0.15s ease;
+touch-action: manipulation;
 }
-.filter-btn:hover { color: var(--text); background: #26333d; }
+.filter-btn:hover { color: var(--text); background: #30363d; }
 .filter-btn.active {
 background: var(--primary) !important;
 color: #ffffff !important;
@@ -115,28 +110,65 @@ color: var(--text);
 padding: 8px 14px;
 border-radius: 6px;
 cursor: pointer;
-font-size: 0.8rem;
+font-size: 0.82rem;
 font-weight: 500;
+touch-action: manipulation;
 }
-.btn-tool:hover { background: #26333d; border-color: var(--primary); }
-​h2 {
-font-size: 1.05rem;
-text-transform: uppercase;
-letter-spacing: 0.5px;
-margin: 28px 0 14px;
-border-left: 4px solid var(--primary);
-padding-left: 10px;
+.btn-tool:hover { background: #30363d; border-color: var(--primary); }
+​/* Equipment Arsenal Grid */
+.arsenal-grid {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+gap: 12px;
+margin-bottom: 24px;
 }
-​/* SVG Diagram Box */
-.diagram-box {
+.arsenal-card {
 background: var(--surface);
 border: 1px solid var(--border);
 border-radius: 8px;
-padding: 16px;
-margin-bottom: 24px;
-overflow-x: auto;
+padding: 14px;
+display: flex;
+flex-direction: column;
+gap: 8px;
 }
-.diagram-svg { width: 100%; min-width: 650px; height: auto; display: block; }
+.arsenal-head {
+display: flex;
+justify-content: space-between;
+align-items: center;
+border-bottom: 1px solid var(--surface-card);
+padding-bottom: 6px;
+}
+.arsenal-category {
+font-size: 0.75rem;
+font-weight: bold;
+text-transform: uppercase;
+color: var(--blue);
+}
+.arsenal-status {
+font-size: 0.7rem;
+padding: 2px 6px;
+border-radius: 4px;
+background: var(--surface-card);
+color: var(--text-muted);
+}
+.arsenal-title {
+font-size: 0.9rem;
+font-weight: 600;
+color: var(--text);
+}
+.arsenal-spec {
+font-size: 0.78rem;
+color: var(--text-muted);
+line-height: 1.4;
+}
+.arsenal-purpose {
+font-size: 0.72rem;
+color: #7ee787;
+background: rgba(46, 160, 67, 0.1);
+padding: 4px 8px;
+border-radius: 4px;
+border-left: 3px solid var(--green);
+}
 ​/* Caution cards */
 .caution-grid {
 display: grid;
@@ -158,6 +190,16 @@ text-transform: uppercase;
 margin-bottom: 4px;
 }
 .caution-card p { font-size: 0.75rem; color: var(--text-muted); line-height: 1.4; }
+​/* SVG Architecture Diagram */
+.diagram-box {
+background: var(--surface);
+border: 1px solid var(--border);
+border-radius: 8px;
+padding: 16px;
+margin-bottom: 24px;
+overflow-x: auto;
+}
+.diagram-svg { width: 100%; min-width: 650px; height: auto; display: block; }
 ​/* Task Checklist */
 .task-stack { display: flex; flex-direction: column; gap: 10px; }
 .task-item {
@@ -170,19 +212,20 @@ align-items: flex-start;
 gap: 14px;
 transition: opacity 0.2s, border-color 0.2s;
 }
-.task-item.is-checked {
+.task-item.is-done {
 opacity: 0.45;
-background: #12171a;
-border-color: #1c262c;
+background: #101418;
+border-color: #1f242c;
 }
-.task-item.is-checked .task-title { text-decoration: line-through; }
+.task-item.is-done .task-title { text-decoration: line-through; }
 ​.task-checkbox {
-width: 20px;
-height: 20px;
+width: 22px;
+height: 22px;
 margin-top: 2px;
 cursor: pointer;
 accent-color: var(--green);
 flex-shrink: 0;
+touch-action: manipulation;
 }
 .task-content { flex-grow: 1; }
 .task-head {
@@ -193,7 +236,7 @@ margin-bottom: 4px;
 flex-wrap: wrap;
 gap: 6px;
 }
-.task-title { font-size: 0.9rem; font-weight: 600; color: var(--text); }
+.task-title { font-size: 0.92rem; font-weight: 600; color: var(--text); }
 .task-tag {
 font-size: 0.7rem;
 font-weight: 700;
@@ -206,20 +249,20 @@ background: var(--surface-card);
 .tag-weekly { color: var(--green); border: 1px solid #238636; }
 .tag-bi-weekly { color: var(--yellow); border: 1px solid #9e6a03; }
 .tag-monthly { color: var(--orange); border: 1px solid #bd561d; }
-.tag-quarterly { color: #d2a8ff; border: 1px solid #8957e5; }
+.tag-quarterly { color: var(--purple); border: 1px solid #8957e5; }
 .tag-half-yearly { color: #f778ba; border: 1px solid #bf4b8a; }
 .tag-yearly { color: #ff7b72; border: 1px solid var(--primary); }
 ​.task-details {
-font-size: 0.8rem;
+font-size: 0.82rem;
 color: var(--text-muted);
 line-height: 1.4;
 margin-bottom: 4px;
 }
 .task-meta {
-font-size: 0.75rem;
+font-size: 0.76rem;
 color: #79c0ff;
 }
-​/* Rules grid */
+​/* Rules Grid */
 .rules-grid {
 display: grid;
 grid-template-columns: 1fr 1fr;
@@ -243,14 +286,14 @@ background: var(--surface);
 ​/* Print Styles */
 @media print {
 body { background: #fff !important; color: #000 !important; padding: 0; }
-.filter-bar, .badge-tag, .utility-btns, .kit-grid { display: none !important; }
-.diagram-box, .caution-card, .task-item, .rule-box {
+.filter-bar, .badge-tag, .utility-btns { display: none !important; }
+.arsenal-card, .diagram-box, .caution-card, .task-item, .rule-box {
 background: #fff !important;
 border: 1px solid #ccc !important;
 color: #000 !important;
 }
-.task-title, h1, h2, strong { color: #000 !important; }
-.task-details, .task-meta, .caution-card p, .rule-box ul { color: #333 !important; }
+.task-title, h1, h2, strong, .arsenal-title { color: #000 !important; }
+.task-details, .task-meta, .caution-card p, .rule-box ul, .arsenal-spec { color: #333 !important; }
 .task-checkbox { border-color: #000 !important; }
 .diagram-svg text { fill: #000 !important; }
 .diagram-svg rect, .diagram-svg path { stroke: #333 !important; }
@@ -262,114 +305,185 @@ color: #000 !important;
 <header>
 <div>
 <h1>Triumph Scrambler 400 X</h1>
-<div class="subtitle">Manual Hand-Wash & Garage Maintenance Protocol</div>
+<div class="subtitle">Complete Garage Arsenal, Hand-Wash & Periodic Protocol</div>
 </div>
 <div class="badge-tag">Carnival Red Edition</div>
 </header>
-​<!-- Hand-Wash Toolkit Section -->
-<h2>Basic Hand-Wash Toolkit</h2>
-<div class="kit-grid">
-<div class="kit-card">
-<strong>1. Manual Pressure Foamer</strong>
-<p>1.5L–2L hand pump mister for touchless dirt pre-soaking without high-pressure hoses.</p>
+​<!-- GARAGE ARSENAL & INVENTORY -->
+<h2>Garage Equipment & Chemical Arsenal</h2>
+<div class="arsenal-grid">
+<!-- Item 1 -->
+<div class="arsenal-card">
+<div class="arsenal-head">
+<span class="arsenal-category">Hardware</span>
+<span class="arsenal-status">Essential</span>
 </div>
-<div class="kit-card">
-<strong>2. Dedicated Sponges / Mitts</strong>
-<p>Soft plush wash mitt for paintwork; secondary separate sponge strictly for greasy wheels and lower swingarm.</p>
+<div class="arsenal-title">2L Manual Pump Pressure Foamer</div>
+<div class="arsenal-spec">Hand pump foam generator with pressure-relief valve. Creates dense clinging foam without garden taps or electric pressure washers.</div>
+<div class="arsenal-purpose">Purpose: Safe touchless pre-wash dirt breakdown</div>
 </div>
-<div class="kit-card">
-<strong>3. Microfiber Towels</strong>
-<p>Clean dry towel for daily fork stanchions (300 GSM) + large twisted-loop drying towel (500+ GSM).</p>
+​<!-- Item 2 -->
+<div class="arsenal-card">
+<div class="arsenal-head">
+<span class="arsenal-category">Textiles</span>
+<span class="arsenal-status">Essential</span>
 </div>
-<div class="kit-card">
-<strong>4. Two-Bucket Routine</strong>
-<p>Bucket A (shampoo solution) & Bucket B (fresh rinse water). Pour water gently via jug/hose for low pressure.</p>
+<div class="arsenal-title">Microfiber Arsenal (3 Tiers)</div>
+<div class="arsenal-spec">
+• Tier 1: Two 300 GSM short-pile towels (Dry daily fork wipe & mirrors)
+
+• Tier 2: Plush noodle wash mitt (Tank & clear coat)
+
+• Tier 3: 500+ GSM twisted-loop drying towel (Streak-free post-wash drying)
+</div>
+<div class="arsenal-purpose">Rule: Never mix dirty wheel rags with paint towels</div>
+</div>
+​<!-- Item 3 -->
+<div class="arsenal-card">
+<div class="arsenal-head">
+<span class="arsenal-category">Tools</span>
+<span class="arsenal-status">Essential</span>
+</div>
+<div class="arsenal-title">Dual-Bucket Setup + Sponges</div>
+<div class="arsenal-spec">Bucket 1 for fresh car shampoo solution; Bucket 2 with clean water for rinsing grit off your sponge before touching the paint again. One dedicated rough sponge for wheels and swingarm.</div>
+<div class="arsenal-purpose">Purpose: Eliminates 95% of accidental swirl marks</div>
+</div>
+​<!-- Item 4 -->
+<div class="arsenal-card">
+<div class="arsenal-head">
+<span class="arsenal-category">Chemicals</span>
+<span class="arsenal-status">Essential</span>
+</div>
+<div class="arsenal-title">pH-Neutral Bike Shampoo</div>
+<div class="arsenal-spec">Concentrated wax-safe, pH 7.0 formula. Cleanly encapsulates dirt without degrading factory protective clear coats or drying out rubber hoses and seals.</div>
+<div class="arsenal-purpose">Danger: Never use dishwashing liquid or laundry soap</div>
+</div>
+​<!-- Item 5 -->
+<div class="arsenal-card">
+<div class="arsenal-head">
+<span class="arsenal-category">Drivetrain</span>
+<span class="arsenal-status">Essential</span>
+</div>
+<div class="arsenal-title">3-Sided Grunge Brush + Kerosene</div>
+<div class="arsenal-spec">U-shaped stiff nylon brush that envelops all 3 exposed sides of the drive chain simultaneously. Kerosene dissolves baked grime without damaging synthetic nitrile O-rings.</div>
+<div class="arsenal-purpose">Purpose: Prevents premature drive sprocket wear</div>
+</div>
+​<!-- Item 6 -->
+<div class="arsenal-card">
+<div class="arsenal-head">
+<span class="arsenal-category">Lubrication</span>
+<span class="arsenal-status">Essential</span>
+</div>
+<div class="arsenal-title">Synthetic O/X-Ring Chain Lube</div>
+<div class="arsenal-spec">High-cling synthetic lube or wax-based formula with pinpoint applicator straw. Resists road dust accumulation and prevents high-speed centrifugal fling onto the Carnival Red tail.</div>
+<div class="arsenal-purpose">Application: Spray onto inner roller run after rides</div>
+</div>
+​<!-- Item 7 -->
+<div class="arsenal-card">
+<div class="arsenal-head">
+<span class="arsenal-category">Detailing</span>
+<span class="arsenal-status">Specialized</span>
+</div>
+<div class="arsenal-title">Long Flexible Bottle / Linkage Brush</div>
+<div class="arsenal-spec">Slim, 360-degree soft bristle wire-core brush that reaches between the rear swingarm cavity to scrub behind the monoshock spring and bottom linkage bolt safely.</div>
+<div class="arsenal-purpose">Purpose: Protects shock chrome shaft from dirt cakes</div>
+</div>
+​<!-- Item 8 -->
+<div class="arsenal-card">
+<div class="arsenal-head">
+<span class="arsenal-category">Preservation</span>
+<span class="arsenal-status">Periodic</span>
+</div>
+<div class="arsenal-title">ACF-50 / Anti-Corrosion Spray</div>
+<div class="arsenal-spec">Aerospace-grade moisture displacing barrier liquid. Sprayed onto a cloth to wipe fasteners, brake banjo bolts, footpeg pins, and unpainted alloy engine surfaces.</div>
+<div class="arsenal-purpose">Keep clear of brake pads and rotor discs</div>
 </div>
 </div>
-​<!-- Filter & Action Toolbar -->
+​<!-- INTERACTIVE ACTION TOOLBAR -->
+<h2>Service Schedule Filters</h2>
 <div class="filter-bar">
-<button type="button" class="filter-btn active" data-filter="all">All</button>
-<button type="button" class="filter-btn" data-filter="Daily">Daily</button>
-<button type="button" class="filter-btn" data-filter="Weekly">Weekly</button>
-<button type="button" class="filter-btn" data-filter="Bi-Weekly">Bi-Weekly</button>
-<button type="button" class="filter-btn" data-filter="Monthly">Monthly</button>
-<button type="button" class="filter-btn" data-filter="Quarterly">Quarterly</button>
-<button type="button" class="filter-btn" data-filter="Half-Yearly">Half-Yearly</button>
-<button type="button" class="filter-btn" data-filter="Yearly">Yearly</button>
+<button type="button" class="filter-btn active" onclick="applyFilter('all', this)">All</button>
+<button type="button" class="filter-btn" onclick="applyFilter('Daily', this)">Daily</button>
+<button type="button" class="filter-btn" onclick="applyFilter('Weekly', this)">Weekly</button>
+<button type="button" class="filter-btn" onclick="applyFilter('Bi-Weekly', this)">Bi-Weekly</button>
+<button type="button" class="filter-btn" onclick="applyFilter('Monthly', this)">Monthly</button>
+<button type="button" class="filter-btn" onclick="applyFilter('Quarterly', this)">Quarterly</button>
+<button type="button" class="filter-btn" onclick="applyFilter('Half-Yearly', this)">Half-Yearly</button>
+<button type="button" class="filter-btn" onclick="applyFilter('Yearly', this)">Yearly</button>
 ​<div class="utility-btns">
-<button type="button" class="btn-tool" id="btnPrint">Print / PDF</button>
-<button type="button" class="btn-tool" id="btnReset">Reset</button>
+<button type="button" class="btn-tool" onclick="window.print()">Print / PDF</button>
+<button type="button" class="btn-tool" onclick="resetAllChecks()">Reset</button>
 </div>
 </div>
-​<!-- SVG Architecture & Flow Diagram -->
+​<!-- ARCHITECTURE DIAGRAM -->
 <h2>Hand-Wash Flow & Caution Map</h2>
 <div class="diagram-box">
 <svg class="diagram-svg" viewBox="0 0 760 210" xmlns="http://www.w3.org/2000/svg">
 <!-- Step 1 -->
-<rect x="10" y="20" width="130" height="75" rx="6" fill="#182026" stroke="#f0883e" stroke-width="2"/>
-<text x="75" y="44" fill="#f0883e" font-size="11" font-weight="bold" text-anchor="middle">1. COOLDOWN</text>
-<text x="75" y="62" fill="#94a3b8" font-size="9" text-anchor="middle">45 min rest</text>
-<text x="75" y="78" fill="#e6edf3" font-size="9" text-anchor="middle">Header & Under-Cat</text>
-​<path d="M 140 57 L 165 57" stroke="#2d3b45" stroke-width="2"/>
+<rect x="10" y="20" width="130" height="75" rx="6" fill="#161b22" stroke="#db6d28" stroke-width="2"/>
+<text x="75" y="44" fill="#db6d28" font-size="11" font-weight="bold" text-anchor="middle">1. COOLDOWN</text>
+<text x="75" y="62" fill="#8b949e" font-size="9" text-anchor="middle">45 min rest</text>
+<text x="75" y="78" fill="#f0f6fc" font-size="9" text-anchor="middle">Exhaust & Cat-Con</text>
+​<path d="M 140 57 L 165 57" stroke="#30363d" stroke-width="2"/>
 ​<!-- Step 2 -->
-<rect x="165" y="20" width="130" height="75" rx="6" fill="#182026" stroke="#d2a8ff" stroke-width="2"/>
-<text x="230" y="44" fill="#d2a8ff" font-size="11" font-weight="bold" text-anchor="middle">2. CHAIN SCRUB</text>
-<text x="230" y="62" fill="#94a3b8" font-size="9" text-anchor="middle">Kerosene + Grunge brush</text>
-<text x="230" y="78" fill="#e6edf3" font-size="9" text-anchor="middle">Dry with rag</text>
-​<path d="M 295 57 L 320 57" stroke="#2d3b45" stroke-width="2"/>
+<rect x="165" y="20" width="130" height="75" rx="6" fill="#161b22" stroke="#bc8cff" stroke-width="2"/>
+<text x="230" y="44" fill="#bc8cff" font-size="11" font-weight="bold" text-anchor="middle">2. CHAIN SCRUB</text>
+<text x="230" y="62" fill="#8b949e" font-size="9" text-anchor="middle">Kerosene + Brush</text>
+<text x="230" y="78" fill="#f0f6fc" font-size="9" text-anchor="middle">Dry with clean rag</text>
+​<path d="M 295 57 L 320 57" stroke="#30363d" stroke-width="2"/>
 ​<!-- Step 3 -->
-<rect x="320" y="20" width="130" height="75" rx="6" fill="#182026" stroke="#2ea043" stroke-width="2"/>
-<text x="385" y="44" fill="#2ea043" font-size="11" font-weight="bold" text-anchor="middle">3. PUMP PRE-FOAM</text>
-<text x="385" y="62" fill="#94a3b8" font-size="9" text-anchor="middle">Manual pressure spray</text>
-<text x="385" y="78" fill="#e6edf3" font-size="9" text-anchor="middle">2-min dwell soak</text>
-​<path d="M 450 57 L 475 57" stroke="#2d3b45" stroke-width="2"/>
+<rect x="320" y="20" width="130" height="75" rx="6" fill="#161b22" stroke="#238636" stroke-width="2"/>
+<text x="385" y="44" fill="#238636" font-size="11" font-weight="bold" text-anchor="middle">3. PUMP PRE-FOAM</text>
+<text x="385" y="62" fill="#8b949e" font-size="9" text-anchor="middle">2L manual foamer</text>
+<text x="385" y="78" fill="#f0f6fc" font-size="9" text-anchor="middle">2-min dirt soak</text>
+​<path d="M 450 57 L 475 57" stroke="#30363d" stroke-width="2"/>
 ​<!-- Step 4 -->
-<rect x="475" y="20" width="130" height="75" rx="6" fill="#182026" stroke="#58a6ff" stroke-width="2"/>
+<rect x="475" y="20" width="130" height="75" rx="6" fill="#161b22" stroke="#58a6ff" stroke-width="2"/>
 <text x="540" y="44" fill="#58a6ff" font-size="11" font-weight="bold" text-anchor="middle">4. TWO-BUCKET</text>
-<text x="540" y="62" fill="#94a3b8" font-size="9" text-anchor="middle">Top-down sponge pass</text>
-<text x="540" y="78" fill="#e6edf3" font-size="9" text-anchor="middle">Rinse in water bucket</text>
-​<path d="M 605 57 L 630 57" stroke="#2d3b45" stroke-width="2"/>
+<text x="540" y="62" fill="#8b949e" font-size="9" text-anchor="middle">Mitt on paint first</text>
+<text x="540" y="78" fill="#f0f6fc" font-size="9" text-anchor="middle">Separate wheel sponge</text>
+​<path d="M 605 57 L 630 57" stroke="#30363d" stroke-width="2"/>
 ​<!-- Step 5 -->
-<rect x="630" y="20" width="120" height="75" rx="6" fill="#182026" stroke="#c1121f" stroke-width="2"/>
+<rect x="630" y="20" width="120" height="75" rx="6" fill="#161b22" stroke="#c1121f" stroke-width="2"/>
 <text x="690" y="44" fill="#c1121f" font-size="11" font-weight="bold" text-anchor="middle">5. TOWEL DRY</text>
-<text x="690" y="62" fill="#94a3b8" font-size="9" text-anchor="middle">Microfiber dry</text>
-<text x="690" y="78" fill="#e6edf3" font-size="9" text-anchor="middle">Chain lube & cure</text>
+<text x="690" y="62" fill="#8b949e" font-size="9" text-anchor="middle">Twisted-loop towel</text>
+<text x="690" y="78" fill="#f0f6fc" font-size="9" text-anchor="middle">Chain lube & cure</text>
 ​<!-- Bottom instruction callout -->
-<rect x="10" y="125" width="740" height="65" rx="6" fill="#12171a" stroke="#2d3b45" stroke-width="1"/>
-<text x="25" y="150" fill="#e6edf3" font-size="11" font-weight="bold">SAFE MANUAL WASH ADVANTAGE:</text>
-<text x="25" y="170" fill="#94a3b8" font-size="10">Hand washing is safer than pressure washers: it completely avoids forcing pressurized water into wheel hub bearings, shock seals, or cockpit wiring.</text>
+<rect x="10" y="125" width="740" height="65" rx="6" fill="#101418" stroke="#30363d" stroke-width="1"/>
+<text x="25" y="150" fill="#f0f6fc" font-size="11" font-weight="bold">HAND WASHING PRESERVES CRITICAL SEALS:</text>
+<text x="25" y="170" fill="#8b949e" font-size="10">Gentle bucket rinsing eliminates the risk of high pressure forcing water past steering head bearings, USB flaps, and rear monoshock wiper seals.</text>
 </svg>
 </div>
-​<!-- Caution Specs -->
-<h2>Hand-Washing Caution Specs</h2>
+​<!-- CAUTION SPECS -->
+<h2>Zone Caution Specs</h2>
 <div class="caution-grid">
 <div class="caution-card">
-<strong>Speedo Pod & Switches</strong>
-<p>Clean cluster and switch cubes using a wrung-out damp microfiber cloth. Never pour a full bucket of water over the handlebars.</p>
+<strong>Speedo Pod & USB</strong>
+<p>Clean LCD/analog unit and handlebar switchgear with a wrung-out damp microfiber cloth. Keep the rubber USB flap sealed tight.</p>
 </div>
 <div class="caution-card">
 <strong>Radiator Core</strong>
-<p>Spray with hand-pump sprayer to dissolve bugs. Use a soft horsehair paintbrush or bottle brush gently without pressing into delicate fins.</p>
+<p>Pre-soak bugs with your pump foamer. Agitate gently with a soft horsehair detail brush; never dig fingers or stiff bristles into soft fins.</p>
 </div>
 <div class="caution-card">
-<strong>Exhaust Header & Under-Cat</strong>
-<p>Ensure exhaust is fully cool to touch before wiping down to prevent burning your microfiber towels or scorching the clear finish.</p>
+<strong>Cat-Con & Pipe</strong>
+<p>Allow the underbelly exhaust box to cool down 45 mins. Cold water on hot catalytic converters causes rapid stress contraction.</p>
 </div>
 <div class="caution-card">
 <strong>O-Ring Drive Chain</strong>
-<p>Do not soak with soapy water first. Degrease with kerosene and a rag first, then rinse lightly and dry thoroughly before lubing.</p>
+<p>Clean chain first before washing the rest of the bike. Degrease with kerosene and dry completely before applying synthetic lube.</p>
 </div>
 <div class="caution-card">
-<strong>Monoshock Piston Shaft</strong>
-<p>Clean spring and chrome rod using a flexible bottle brush dipped in soapy water. Wipe rod clean with a dedicated damp rag.</p>
+<strong>Rear Monoshock</strong>
+<p>Wash coils using the flexible bottle brush. Wipe chrome piston rod with a dedicated microfiber; never leave greasy chain sludge on the shaft.</p>
 </div>
 </div>
-​<!-- Checklist items -->
+​<!-- SCHEDULED TASKS -->
 <h2>Scheduled Service Protocol</h2>
 <div class="task-stack" id="taskStack">
 ​<!-- DAILY -->
 <div class="task-item" data-freq="Daily">
-<input type="checkbox" class="task-checkbox" id="chk_d1">
+<input type="checkbox" class="task-checkbox" id="chk_d1" onchange="toggleItem(this)">
 <div class="task-content">
 <div class="task-head">
 <span class="task-title">Dry Wipe Fork Stanchions</span>
@@ -380,7 +494,7 @@ color: #000 !important;
 </div>
 </div>
 ​<div class="task-item" data-freq="Daily">
-<input type="checkbox" class="task-checkbox" id="chk_d2">
+<input type="checkbox" class="task-checkbox" id="chk_d2" onchange="toggleItem(this)">
 <div class="task-content">
 <div class="task-head">
 <span class="task-title">Clean Headlamp Lens & Mirrors</span>
@@ -392,7 +506,7 @@ color: #000 !important;
 </div>
 ​<!-- WEEKLY -->
 <div class="task-item" data-freq="Weekly">
-<input type="checkbox" class="task-checkbox" id="chk_w1">
+<input type="checkbox" class="task-checkbox" id="chk_w1" onchange="toggleItem(this)">
 <div class="task-content">
 <div class="task-head">
 <span class="task-title">Pre-Foam with Hand Pump Pressure Sprayer</span>
@@ -403,7 +517,7 @@ color: #000 !important;
 </div>
 </div>
 ​<div class="task-item" data-freq="Weekly">
-<input type="checkbox" class="task-checkbox" id="chk_w2">
+<input type="checkbox" class="task-checkbox" id="chk_w2" onchange="toggleItem(this)">
 <div class="task-content">
 <div class="task-head">
 <span class="task-title">Two-Bucket Hand Sponge Wash</span>
@@ -414,7 +528,7 @@ color: #000 !important;
 </div>
 </div>
 ​<div class="task-item" data-freq="Weekly">
-<input type="checkbox" class="task-checkbox" id="chk_w3">
+<input type="checkbox" class="task-checkbox" id="chk_w3" onchange="toggleItem(this)">
 <div class="task-content">
 <div class="task-head">
 <span class="task-title">Gravity Bucket Rinse & Microfiber Dry</span>
@@ -425,7 +539,7 @@ color: #000 !important;
 </div>
 </div>
 ​<div class="task-item" data-freq="Weekly">
-<input type="checkbox" class="task-checkbox" id="chk_w4">
+<input type="checkbox" class="task-checkbox" id="chk_w4" onchange="toggleItem(this)">
 <div class="task-content">
 <div class="task-head">
 <span class="task-title">Fluid Sight Glass & Coolant Check</span>
@@ -437,7 +551,7 @@ color: #000 !important;
 </div>
 ​<!-- BI-WEEKLY -->
 <div class="task-item" data-freq="Bi-Weekly">
-<input type="checkbox" class="task-checkbox" id="chk_bw1">
+<input type="checkbox" class="task-checkbox" id="chk_bw1" onchange="toggleItem(this)">
 <div class="task-content">
 <div class="task-head">
 <span class="task-title">Drive Chain Manual Scrub</span>
@@ -448,7 +562,7 @@ color: #000 !important;
 </div>
 </div>
 ​<div class="task-item" data-freq="Bi-Weekly">
-<input type="checkbox" class="task-checkbox" id="chk_bw2">
+<input type="checkbox" class="task-checkbox" id="chk_bw2" onchange="toggleItem(this)">
 <div class="task-content">
 <div class="task-head">
 <span class="task-title">Chain Lube Application with Shield</span>
@@ -460,7 +574,7 @@ color: #000 !important;
 </div>
 ​<!-- MONTHLY -->
 <div class="task-item" data-freq="Monthly">
-<input type="checkbox" class="task-checkbox" id="chk_m1">
+<input type="checkbox" class="task-checkbox" id="chk_m1" onchange="toggleItem(this)">
 <div class="task-content">
 <div class="task-head">
 <span class="task-title">Detail Rear Shock & Linkage with Bottle Brush</span>
@@ -471,7 +585,7 @@ color: #000 !important;
 </div>
 </div>
 ​<div class="task-item" data-freq="Monthly">
-<input type="checkbox" class="task-checkbox" id="chk_m2">
+<input type="checkbox" class="task-checkbox" id="chk_m2" onchange="toggleItem(this)">
 <div class="task-content">
 <div class="task-head">
 <span class="task-title">Radiator Fin Hand Cleaning</span>
@@ -483,7 +597,7 @@ color: #000 !important;
 </div>
 ​<!-- QUARTERLY -->
 <div class="task-item" data-freq="Quarterly">
-<input type="checkbox" class="task-checkbox" id="chk_q1">
+<input type="checkbox" class="task-checkbox" id="chk_q1" onchange="toggleItem(this)">
 <div class="task-content">
 <div class="task-head">
 <span class="task-title">Hand Wax / Sealant on Carnival Red Tank</span>
@@ -494,7 +608,7 @@ color: #000 !important;
 </div>
 </div>
 ​<div class="task-item" data-freq="Quarterly">
-<input type="checkbox" class="task-checkbox" id="chk_q2">
+<input type="checkbox" class="task-checkbox" id="chk_q2" onchange="toggleItem(this)">
 <div class="task-content">
 <div class="task-head">
 <span class="task-title">Condition Unpainted Textured Plastics</span>
@@ -505,7 +619,7 @@ color: #000 !important;
 </div>
 </div>
 ​<div class="task-item" data-freq="Quarterly">
-<input type="checkbox" class="task-checkbox" id="chk_q3">
+<input type="checkbox" class="task-checkbox" id="chk_q3" onchange="toggleItem(this)">
 <div class="task-content">
 <div class="task-head">
 <span class="task-title">Fasteners & Frame Anti-Corrosion Wipe</span>
@@ -517,7 +631,7 @@ color: #000 !important;
 </div>
 ​<!-- HALF-YEARLY -->
 <div class="task-item" data-freq="Half-Yearly">
-<input type="checkbox" class="task-checkbox" id="chk_hy1">
+<input type="checkbox" class="task-checkbox" id="chk_hy1" onchange="toggleItem(this)">
 <div class="task-content">
 <div class="task-head">
 <span class="task-title">Battery Terminal Check & Dielectric Grease</span>
@@ -528,7 +642,7 @@ color: #000 !important;
 </div>
 </div>
 ​<div class="task-item" data-freq="Half-Yearly">
-<input type="checkbox" class="task-checkbox" id="chk_hy2">
+<input type="checkbox" class="task-checkbox" id="chk_hy2" onchange="toggleItem(this)">
 <div class="task-content">
 <div class="task-head">
 <span class="task-title">Pivot Joints Lubrication</span>
@@ -540,7 +654,7 @@ color: #000 !important;
 </div>
 ​<!-- YEARLY -->
 <div class="task-item" data-freq="Yearly">
-<input type="checkbox" class="task-checkbox" id="chk_y1">
+<input type="checkbox" class="task-checkbox" id="chk_y1" onchange="toggleItem(this)">
 <div class="task-content">
 <div class="task-head">
 <span class="task-title">Hand Clay Bar Decontamination</span>
@@ -551,7 +665,7 @@ color: #000 !important;
 </div>
 </div>
 ​</div>
-​<!-- Rules Grid -->
+​<!-- RULES GRID -->
 <div class="rules-grid">
 <div class="rule-box do">
 <h3>Do's (Hand Washing)</h3>
@@ -574,85 +688,64 @@ color: #000 !important;
 </div>
 </div>
 ​<script>
-(function () {
-function setupApp() {
-// 1. Task Checkbox Persistence
-var checkboxes = document.querySelectorAll('.task-checkbox');
-for (var i = 0; i < checkboxes.length; i++) {
-(function (box) {
-var key = 'scrambler_app_' + box.id;
-if (localStorage.getItem(key) === 'true') {
-box.checked = true;
-var parent = box.closest('.task-item');
-if (parent) parent.classList.add('is-checked');
+// 1. Instant Global Filter Action (Guaranteed to execute on mobile & desktop)
+window.applyFilter = function(freq, buttonElement) {
+var buttons = document.getElementsByClassName('filter-btn');
+for (var i = 0; i < buttons.length; i++) {
+buttons[i].classList.remove('active');
 }
-​box.addEventListener('change', function () {
-var p = box.closest('.task-item');
-if (box.checked) {
-if (p) p.classList.add('is-checked');
-localStorage.setItem(key, 'true');
-} else {
-if (p) p.classList.remove('is-checked');
-localStorage.removeItem(key);
+if (buttonElement) {
+buttonElement.classList.add('active');
 }
-});
-})(checkboxes[i]);
-}
-​// 2. Filter Button Functionality
-var filterButtons = document.querySelectorAll('.filter-btn');
-var taskItems = document.querySelectorAll('.task-item');
-​for (var j = 0; j < filterButtons.length; j++) {
-(function (btn) {
-btn.addEventListener('click', function (e) {
-e.preventDefault();
-​for (var k = 0; k < filterButtons.length; k++) {
-filterButtons[k].classList.remove('active');
-}
-btn.classList.add('active');
-​var filterValue = btn.getAttribute('data-filter');
-​for (var m = 0; m < taskItems.length; m++) {
-var item = taskItems[m];
-var freq = item.getAttribute('data-freq');
-if (filterValue === 'all' || freq === filterValue) {
+​var tasks = document.getElementsByClassName('task-item');
+for (var j = 0; j < tasks.length; j++) {
+var item = tasks[j];
+var itemFreq = item.getAttribute('data-freq');
+if (freq === 'all' || itemFreq === freq) {
 item.style.display = 'flex';
 } else {
 item.style.display = 'none';
 }
 }
-});
-})(filterButtons[j]);
-}
-​// 3. Print / PDF Button
-var printBtn = document.getElementById('btnPrint');
-if (printBtn) {
-printBtn.addEventListener('click', function (e) {
-e.preventDefault();
-window.print();
-});
-}
-​// 4. Reset Button
-var resetBtn = document.getElementById('btnReset');
-if (resetBtn) {
-resetBtn.addEventListener('click', function (e) {
-e.preventDefault();
-if (confirm('Reset all checked items?')) {
-for (var n = 0; n < checkboxes.length; n++) {
-var chk = checkboxes[n];
-chk.checked = false;
-var par = chk.closest('.task-item');
-if (par) par.classList.remove('is-checked');
-localStorage.removeItem('scrambler_app_' + chk.id);
-}
-}
-});
-}
-}
-​if (document.readyState === 'loading') {
-document.addEventListener('DOMContentLoaded', setupApp);
+};
+​// 2. Instant Item Checking & Persistent LocalStorage
+window.toggleItem = function(checkbox) {
+var parent = checkbox.closest('.task-item');
+var key = 'scrambler_v3_' + checkbox.id;
+if (checkbox.checked) {
+if (parent) parent.classList.add('is-done');
+try { localStorage.setItem(key, 'true'); } catch(e) {}
 } else {
-setupApp();
+if (parent) parent.classList.remove('is-done');
+try { localStorage.removeItem(key); } catch(e) {}
 }
-})();
+};
+​// 3. Reset All Checked Items
+window.resetAllChecks = function() {
+if (confirm('Reset all checked items in your checklist?')) {
+var boxes = document.getElementsByClassName('task-checkbox');
+for (var i = 0; i < boxes.length; i++) {
+boxes[i].checked = false;
+var p = boxes[i].closest('.task-item');
+if (p) p.classList.remove('is-done');
+try { localStorage.removeItem('scrambler_v3_' + boxes[i].id); } catch(e) {}
+}
+}
+};
+​// 4. Restore Checkbox State on Initial Load
+window.addEventListener('load', function() {
+var boxes = document.getElementsByClassName('task-checkbox');
+for (var i = 0; i < boxes.length; i++) {
+var key = 'scrambler_v3_' + boxes[i].id;
+try {
+if (localStorage.getItem(key) === 'true') {
+boxes[i].checked = true;
+var p = boxes[i].closest('.task-item');
+if (p) p.classList.add('is-done');
+}
+} catch(e) {}
+}
+});
 </script>
 ​</body>
 </html>
