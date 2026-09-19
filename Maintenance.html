@@ -3,11 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Triumph Scrambler 400 X - Maintenance & Cleaning Protocol</title>
+  <title>Triumph Scrambler 400 X - Care Protocol</title>
   <style>
     :root {
       --primary: #c1121f;
-      --primary-dark: #780000;
       --bg: #0f1416;
       --surface: #1a2126;
       --surface-border: #2a353d;
@@ -15,13 +14,7 @@
       --text-muted: #8b949e;
       --accent-green: #2ea043;
     }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
+    * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       background-color: var(--bg);
@@ -29,141 +22,49 @@
       padding: 16px;
       line-height: 1.5;
     }
-
-    .container {
-      max-width: 900px;
-      margin: 0 auto;
-    }
-
-    /* Back navigation bar */
-    .top-nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 16px;
-      font-size: 0.85rem;
-    }
-
-    .top-nav a {
-      color: var(--text-muted);
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      transition: color 0.2s;
-    }
-
-    .top-nav a:hover {
-      color: var(--text-main);
-    }
-
+    .container { max-width: 850px; margin: 0 auto; }
     header {
       border-bottom: 2px solid var(--primary);
-      padding-bottom: 14px;
+      padding-bottom: 12px;
       margin-bottom: 20px;
       display: flex;
-      flex-wrap: wrap;
       justify-content: space-between;
       align-items: flex-end;
-      gap: 10px;
     }
-
-    h1 {
-      font-size: 1.5rem;
-      color: var(--primary);
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-
-    .subtitle {
-      font-size: 0.85rem;
-      color: var(--text-muted);
-    }
-
-    .badge {
-      background: var(--surface);
-      border: 1px solid var(--surface-border);
-      padding: 4px 10px;
-      border-radius: 20px;
-      font-size: 0.75rem;
-      color: var(--text-muted);
-    }
-
-    .btn-row {
-      display: flex;
-      gap: 8px;
-      margin-bottom: 20px;
-      flex-wrap: wrap;
-    }
-
-    button.action-btn {
+    h1 { font-size: 1.4rem; color: var(--primary); text-transform: uppercase; }
+    .btn-row { display: flex; gap: 8px; margin-bottom: 20px; flex-wrap: wrap; }
+    button {
       background: var(--surface);
       border: 1px solid var(--surface-border);
       color: var(--text-main);
-      padding: 6px 14px;
+      padding: 6px 12px;
       border-radius: 6px;
       cursor: pointer;
       font-size: 0.8rem;
-      font-weight: 500;
-      transition: all 0.2s;
     }
-
-    button.action-btn:hover {
-      border-color: var(--primary);
-      color: #fff;
-    }
-
-    button.action-btn.active {
-      background: var(--primary);
-      border-color: var(--primary);
-      color: #fff;
-    }
-
+    button.active { background: var(--primary); border-color: var(--primary); color: #fff; }
     h2 {
-      font-size: 1rem;
+      font-size: 0.95rem;
       text-transform: uppercase;
-      letter-spacing: 0.5px;
       margin: 20px 0 10px;
       border-left: 3px solid var(--primary);
       padding-left: 8px;
     }
-
-    /* Caution Cards */
     .grid-caution {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
       gap: 10px;
-      margin-bottom: 24px;
+      margin-bottom: 20px;
     }
-
     .caution-card {
       background: var(--surface);
       border: 1px solid var(--surface-border);
       border-radius: 6px;
       padding: 10px;
     }
-
-    .caution-card h3 {
-      font-size: 0.8rem;
-      color: var(--primary);
-      text-transform: uppercase;
-      margin-bottom: 4px;
-    }
-
-    .caution-card p {
-      font-size: 0.75rem;
-      color: var(--text-muted);
-      line-height: 1.3;
-    }
-
-    /* Checklist Table / Rows */
-    .task-list {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      margin-bottom: 24px;
-    }
-
+    .caution-card h3 { font-size: 0.75rem; color: var(--primary); text-transform: uppercase; margin-bottom: 4px; }
+    .caution-card p { font-size: 0.75rem; color: var(--text-muted); }
+    .task-list { display: flex; flex-direction: column; gap: 8px; }
     .task-item {
       background: var(--surface);
       border: 1px solid var(--surface-border);
@@ -171,316 +72,124 @@
       padding: 10px 14px;
       display: flex;
       align-items: center;
-      gap: 14px;
-      transition: opacity 0.2s;
+      gap: 12px;
     }
-
-    .task-item.done {
-      opacity: 0.55;
-    }
-
-    .task-item.done .task-title {
-      text-decoration: line-through;
-    }
-
-    .task-check {
-      appearance: none;
-      -webkit-appearance: none;
-      width: 20px;
-      height: 20px;
-      border: 2px solid var(--surface-border);
-      border-radius: 4px;
-      background: transparent;
-      cursor: pointer;
-      display: grid;
-      place-content: center;
-      flex-shrink: 0;
-    }
-
-    .task-check:checked {
-      background: var(--accent-green);
-      border-color: var(--accent-green);
-    }
-
-    .task-check:checked::before {
-      content: "✔";
-      font-size: 12px;
-      color: white;
-    }
-
-    .task-body {
-      flex-grow: 1;
-    }
-
-    .task-header {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 2px;
-    }
-
-    .task-title {
-      font-size: 0.85rem;
-      font-weight: 600;
-    }
-
-    .task-freq {
-      font-size: 0.7rem;
-      color: var(--primary);
-      text-transform: uppercase;
-      font-weight: bold;
-    }
-
-    .task-meta {
-      font-size: 0.75rem;
-      color: var(--text-muted);
-    }
-
-    /* Print Overrides */
-    @media print {
-      body {
-        background: #fff !important;
-        color: #000 !important;
-        padding: 0;
-      }
-      .top-nav, .btn-row, .badge {
-        display: none !important;
-      }
-      .caution-card, .task-item {
-        background: #fff !important;
-        border: 1px solid #ccc !important;
-        color: #000 !important;
-      }
-      .task-title, .caution-card h3 {
-        color: #000 !important;
-      }
-      .task-freq {
-        color: #c1121f !important;
-      }
-      .task-meta, .caution-card p {
-        color: #444 !important;
-      }
-      .task-check {
-        border-color: #000 !important;
-      }
-    }
+    .task-item.done { opacity: 0.5; }
+    .task-item.done .title { text-decoration: line-through; }
+    .task-check { width: 18px; height: 18px; cursor: pointer; accent-color: var(--accent-green); }
+    .task-body { flex-grow: 1; }
+    .task-header { display: flex; justify-content: space-between; margin-bottom: 2px; }
+    .title { font-size: 0.85rem; font-weight: 600; }
+    .freq { font-size: 0.7rem; color: var(--primary); text-transform: uppercase; font-weight: bold; }
+    .meta { font-size: 0.75rem; color: var(--text-muted); }
   </style>
 </head>
 <body>
-
 <div class="container">
-  <div class="top-nav">
-    <a href="index.html">← Back to Main Page</a>
-    <span style="color: var(--text-muted); font-size: 0.75rem;">Offline-Ready Garage Sheet</span>
-  </div>
-
   <header>
     <div>
       <h1>Triumph Scrambler 400 X</h1>
-      <div class="subtitle">Periodic Cleaning & Technical Care Protocol</div>
+      <div style="font-size: 0.8rem; color: var(--text-muted);">Care & Maintenance Checklist</div>
     </div>
-    <div class="badge">Carnival Red Edition</div>
+    <span style="font-size: 0.75rem; color: var(--text-muted);">Carnival Red</span>
   </header>
 
   <div class="btn-row">
-    <button class="action-btn active" onclick="filterTasks('all')">All</button>
-    <button class="action-btn" onclick="filterTasks('Daily')">Daily</button>
-    <button class="action-btn" onclick="filterTasks('Weekly')">Weekly</button>
-    <button class="action-btn" onclick="filterTasks('Bi-Weekly')">Bi-Weekly</button>
-    <button class="action-btn" onclick="filterTasks('Monthly')">Monthly</button>
-    <button class="action-btn" onclick="filterTasks('Quarterly')">Quarterly</button>
-    <button class="action-btn" style="margin-left: auto;" onclick="window.print()">Print / PDF</button>
-    <button class="action-btn" onclick="resetCheckboxes()">Reset</button>
+    <button class="active" onclick="filterTasks('all', this)">All</button>
+    <button onclick="filterTasks('Daily', this)">Daily</button>
+    <button onclick="filterTasks('Weekly', this)">Weekly</button>
+    <button onclick="filterTasks('Bi-Weekly', this)">Bi-Weekly</button>
+    <button onclick="filterTasks('Monthly', this)">Monthly</button>
+    <button style="margin-left: auto;" onclick="window.print()">Print / PDF</button>
   </div>
 
   <h2>Hardware Caution Zones</h2>
   <div class="grid-caution">
     <div class="caution-card">
       <h3>Cluster & TFT</h3>
-      <p>Low pressure only. Keep USB-C seal closed. Never blast switches directly.</p>
+      <p>Low pressure only. Keep USB-C seal closed.</p>
     </div>
     <div class="caution-card">
       <h3>Radiator Core</h3>
-      <p>Clean front-to-back strictly. No angled high-pressure on thin aluminum cooling fins.</p>
+      <p>Clean front-to-back only. Never bend fins.</p>
     </div>
     <div class="caution-card">
-      <h3>Cat-Con & Pipe</h3>
-      <p>Cool down for 45 min before washing. Prevent thermal shock & gasket warping.</p>
+      <h3>Cat-Con & Exhaust</h3>
+      <p>Cool down 45 mins before applying water.</p>
     </div>
     <div class="caution-card">
       <h3>Drive Chain</h3>
-      <p>Kerosene or dedicated chain spray only. Never use petrol or wire brushes on O-rings.</p>
+      <p>Kerosene or dedicated chain spray only.</p>
     </div>
     <div class="caution-card">
       <h3>Monoshock Shaft</h3>
-      <p>Zero high-pressure water near the shock seal. Shield seal head from chain lube.</p>
+      <p>Zero direct pressure jets near the shock wiper.</p>
     </div>
   </div>
 
   <h2>Maintenance Checklist</h2>
-  <div class="task-list" id="taskList">
-
+  <div class="task-list">
     <div class="task-item" data-freq="Daily">
-      <input type="checkbox" class="task-check" id="t1" onchange="toggleTask(this)">
+      <input type="checkbox" class="task-check" onchange="this.closest('.task-item').classList.toggle('done')">
       <div class="task-body">
         <div class="task-header">
-          <span class="task-title">Wipe Inverted Fork Stanchions</span>
-          <span class="task-freq">Daily</span>
+          <span class="title">Wipe Fork Stanchions</span>
+          <span class="freq">Daily</span>
         </div>
-        <div class="task-meta">Tool: Dry microfiber | Removes dust rings and insect debris to protect oil seals.</div>
+        <div class="meta">Dry microfiber | Clean dust rings off gold stanchions to save seals.</div>
       </div>
     </div>
-
     <div class="task-item" data-freq="Daily">
-      <input type="checkbox" class="task-check" id="t2" onchange="toggleTask(this)">
+      <input type="checkbox" class="task-check" onchange="this.closest('.task-item').classList.toggle('done')">
       <div class="task-body">
         <div class="task-header">
-          <span class="task-title">Clean Headlamp & Mirrors</span>
-          <span class="task-freq">Daily</span>
+          <span class="title">Clean Headlamp & Mirrors</span>
+          <span class="freq">Daily</span>
         </div>
-        <div class="task-meta">Tool: Damp towel | Cleans round LED glass and rear-view mirrors for clear night vision.</div>
+        <div class="meta">Damp cloth | Clean road film from LED glass and mirrors.</div>
       </div>
     </div>
-
     <div class="task-item" data-freq="Weekly">
-      <input type="checkbox" class="task-check" id="t3" onchange="toggleTask(this)">
+      <input type="checkbox" class="task-check" onchange="this.closest('.task-item').classList.toggle('done')">
       <div class="task-body">
         <div class="task-header">
-          <span class="task-title">Body Panels Two-Bucket Wash</span>
-          <span class="task-freq">Weekly</span>
+          <span class="title">Two-Bucket Panel Wash</span>
+          <span class="freq">Weekly</span>
         </div>
-        <div class="task-meta">Tool: pH-neutral soap + wash mitt | Hand-wash tank, frame, and wheels. Dry with plush towel.</div>
+        <div class="meta">pH-neutral soap | Hand-wash tank, frame, and wheels. Dry thoroughly.</div>
       </div>
     </div>
-
-    <div class="task-item" data-freq="Weekly">
-      <input type="checkbox" class="task-check" id="t4" onchange="toggleTask(this)">
-      <div class="task-body">
-        <div class="task-header">
-          <span class="task-title">Fluid Level Sight Check</span>
-          <span class="task-freq">Weekly</span>
-        </div>
-        <div class="task-meta">Check engine oil window (bike upright) and verify coolant reservoir marker.</div>
-      </div>
-    </div>
-
     <div class="task-item" data-freq="Bi-Weekly">
-      <input type="checkbox" class="task-check" id="t5" onchange="toggleTask(this)">
+      <input type="checkbox" class="task-check" onchange="this.closest('.task-item').classList.toggle('done')">
       <div class="task-body">
         <div class="task-header">
-          <span class="task-title">Deep Chain Degrease</span>
-          <span class="task-freq">Bi-Weekly</span>
+          <span class="title">Chain Clean & Lubrication</span>
+          <span class="freq">Bi-Weekly</span>
         </div>
-        <div class="task-meta">Tool: Grunge brush + Kerosene | Engine OFF, bike in neutral. Scrub gunk off links; dry with rag.</div>
+        <div class="meta">Kerosene + O-ring lube | Degrease chain, dry, and spray inner roller run.</div>
       </div>
     </div>
-
-    <div class="task-item" data-freq="Bi-Weekly">
-      <input type="checkbox" class="task-check" id="t6" onchange="toggleTask(this)">
-      <div class="task-body">
-        <div class="task-header">
-          <span class="task-title">Chain Lube Application</span>
-          <span class="task-freq">Bi-Weekly</span>
-        </div>
-        <div class="task-meta">Tool: O-Ring chain lube | Spray inside run of warm rollers; let cure 4–6 hrs before riding.</div>
-      </div>
-    </div>
-
     <div class="task-item" data-freq="Monthly">
-      <input type="checkbox" class="task-check" id="t7" onchange="toggleTask(this)">
+      <input type="checkbox" class="task-check" onchange="this.closest('.task-item').classList.toggle('done')">
       <div class="task-body">
         <div class="task-header">
-          <span class="task-title">Clean Monoshock Cavity</span>
-          <span class="task-freq">Monthly</span>
+          <span class="title">Clean Monoshock Cavity</span>
+          <span class="freq">Monthly</span>
         </div>
-        <div class="task-meta">Tool: Soft bottle brush + soap | Clean spring coils & lower linkage; gently rinse with low pressure.</div>
+        <div class="meta">Soft brush + low pressure rinse | Clean spring and lower linkage.</div>
       </div>
     </div>
-
-    <div class="task-item" data-freq="Monthly">
-      <input type="checkbox" class="task-check" id="t8" onchange="toggleTask(this)">
-      <div class="task-body">
-        <div class="task-header">
-          <span class="task-title">Radiator Fin Flush</span>
-          <span class="task-freq">Monthly</span>
-        </div>
-        <div class="task-meta">Tool: Diluted APC + water spray | Flush trapped grit and bugs from cooling fins front-to-back.</div>
-      </div>
-    </div>
-
-    <div class="task-item" data-freq="Quarterly">
-      <input type="checkbox" class="task-check" id="t9" onchange="toggleTask(this)">
-      <div class="task-body">
-        <div class="task-header">
-          <span class="task-title">Carnival Red Tank UV Protection</span>
-          <span class="task-freq">Quarterly</span>
-        </div>
-        <div class="task-meta">Tool: Carnauba wax or synthetic sealant | Buff clear coat to guard against swirl marks and UV sun fade.</div>
-      </div>
-    </div>
-
-    <div class="task-item" data-freq="Quarterly">
-      <input type="checkbox" class="task-check" id="t10" onchange="toggleTask(this)">
-      <div class="task-body">
-        <div class="task-header">
-          <span class="task-title">Fasteners & Frame Anti-Corrosion</span>
-          <span class="task-freq">Quarterly</span>
-        </div>
-        <div class="task-meta">Tool: ACF-50 or anti-corrosion spray | Wipe exposed bolt heads, footpeg pins, and subframe joints.</div>
-      </div>
-    </div>
-
   </div>
 </div>
 
 <script>
-  // Load saved state from LocalStorage
-  document.addEventListener('DOMContentLoaded', () => {
-    document.querySelectorAll('.task-check').forEach(box => {
-      const saved = localStorage.getItem('scrambler_task_' + box.id);
-      if (saved === 'true') {
-        box.checked = true;
-        box.closest('.task-item').classList.add('done');
-      }
-    });
-  });
-
-  // Toggle state and save
-  function toggleTask(checkbox) {
-    const parent = checkbox.closest('.task-item');
-    if (checkbox.checked) {
-      parent.classList.add('done');
-      localStorage.setItem('scrambler_task_' + checkbox.id, 'true');
-    } else {
-      parent.classList.remove('done');
-      localStorage.removeItem('scrambler_task_' + checkbox.id);
-    }
-  }
-
-  // Filter tasks by frequency
-  function filterTasks(freq) {
-    document.querySelectorAll('.action-btn').forEach(btn => btn.classList.remove('active'));
-    event.target.classList.add('active');
-
+  function filterTasks(freq, btn) {
+    document.querySelectorAll('.btn-row button').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
     document.querySelectorAll('.task-item').forEach(item => {
-      if (freq === 'all' || item.getAttribute('data-freq') === freq) {
-        item.style.display = 'flex';
-      } else {
-        item.style.display = 'none';
-      }
+      item.style.display = (freq === 'all' || item.getAttribute('data-freq') === freq) ? 'flex' : 'none';
     });
-  }
-
-  // Reset checkboxes
-  function resetCheckboxes() {
-    if (confirm('Reset all checkboxes?')) {
-      document.querySelectorAll('.task-check').forEach(box => {
-        box.checked = false;
-        box.closest('.task-item').classList.remove('done');
-        localStorage.removeItem('scrambler_task_' + box.id);
-      });
-    }
   }
 </script>
-
 </body>
 </html>
