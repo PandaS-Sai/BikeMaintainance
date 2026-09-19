@@ -51,7 +51,8 @@ border-radius: 20px;
 font-size: 0.75rem;
 color: var(--text-muted);
 }
-​/* Main Navigation Tabs */
+​/* Tab Switch Controls (Radio Based for 100% Reliability) */
+.tab-radio { display: none; }
 .tab-nav {
 display: flex;
 gap: 8px;
@@ -59,7 +60,7 @@ margin-bottom: 18px;
 border-bottom: 1px solid var(--border);
 padding-bottom: 8px;
 }
-.tab-btn {
+.tab-label {
 background: var(--surface);
 border: 1px solid var(--border);
 color: var(--text-muted);
@@ -68,18 +69,21 @@ border-radius: 6px;
 cursor: pointer;
 font-size: 0.88rem;
 font-weight: 600;
+user-select: none;
 transition: all 0.2s;
 }
-.tab-btn:hover { color: var(--text); background: var(--surface-card); }
-.tab-btn.active {
+#tab-switch-checklist:checked ~ .container .tab-nav label[for="tab-switch-checklist"],
+#tab-switch-inventory:checked ~ .container .tab-nav label[for="tab-switch-inventory"] {
 background: var(--primary);
 color: #fff;
 border-color: var(--primary);
 }
-​/* Tab Page Visibility */
-.tab-content { display: none; }
-.tab-content.active { display: block; }
-​/* Sub-Filter Toolbar (Right at top of checklist) */
+​/* Tab Content Visibility */
+.tab-view { display: none; }
+#tab-switch-checklist:checked ~ .container #view-checklist { display: block; }
+#tab-switch-inventory:checked ~ .container #view-inventory { display: block; }
+​/* Filter Switch Controls (CSS-Driven: NEVER FAILS) */
+.filter-radio { display: none; }
 .filter-bar {
 display: flex;
 gap: 6px;
@@ -89,8 +93,9 @@ background: var(--surface);
 padding: 10px;
 border-radius: 8px;
 border: 1px solid var(--border);
+align-items: center;
 }
-.filter-btn {
+.filter-label {
 background: var(--surface-card);
 border: 1px solid var(--border);
 color: var(--text-muted);
@@ -99,14 +104,31 @@ border-radius: 6px;
 cursor: pointer;
 font-size: 0.8rem;
 font-weight: 500;
+user-select: none;
 transition: all 0.15s;
 }
-.filter-btn:hover { color: var(--text); }
-.filter-btn.active {
+.filter-label:hover { color: var(--text); }
+​/* Active Filter Highlights */
+#filter-all:checked ~ .container .filter-bar label[for="filter-all"],
+#filter-daily:checked ~ .container .filter-bar label[for="filter-daily"],
+#filter-weekly:checked ~ .container .filter-bar label[for="filter-weekly"],
+#filter-biweekly:checked ~ .container .filter-bar label[for="filter-biweekly"],
+#filter-monthly:checked ~ .container .filter-bar label[for="filter-monthly"],
+#filter-quarterly:checked ~ .container .filter-bar label[for="filter-quarterly"],
+#filter-halfyearly:checked ~ .container .filter-bar label[for="filter-halfyearly"],
+#filter-yearly:checked ~ .container .filter-bar label[for="filter-yearly"] {
 background: var(--primary);
 color: #ffffff;
 border-color: var(--primary);
 }
+​/* CSS-driven task visibility rules */
+#filter-daily:checked ~ .container .task-item:not([data-freq="Daily"]) { display: none !important; }
+#filter-weekly:checked ~ .container .task-item:not([data-freq="Weekly"]) { display: none !important; }
+#filter-biweekly:checked ~ .container .task-item:not([data-freq="Bi-Weekly"]) { display: none !important; }
+#filter-monthly:checked ~ .container .task-item:not([data-freq="Monthly"]) { display: none !important; }
+#filter-quarterly:checked ~ .container .task-item:not([data-freq="Quarterly"]) { display: none !important; }
+#filter-halfyearly:checked ~ .container .task-item:not([data-freq="Half-Yearly"]) { display: none !important; }
+#filter-yearly:checked ~ .container .task-item:not([data-freq="Yearly"]) { display: none !important; }
 ​.utility-btns {
 margin-left: auto;
 display: flex;
@@ -146,8 +168,8 @@ transition: opacity 0.2s;
 .task-item.done { opacity: 0.45; }
 .task-item.done .task-title { text-decoration: line-through; }
 .task-check {
-width: 18px;
-height: 18px;
+width: 20px;
+height: 20px;
 margin-top: 2px;
 cursor: pointer;
 accent-color: var(--green);
@@ -216,7 +238,7 @@ border-radius: 4px;
 border-left: 3px solid var(--green);
 margin-top: 4px;
 }
-​/* Caution Zones (Moved to the bottom) */
+​/* Caution Zones (At Bottom) */
 .grid-caution {
 display: grid;
 grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
@@ -254,11 +276,11 @@ background: var(--surface);
 .rule-box.dont h3 { color: var(--primary); }
 .rule-box ul { padding-left: 16px; font-size: 0.76rem; color: var(--text-muted); }
 .rule-box li { margin-bottom: 4px; }
-​/* Print Stylesheet */
+​/* Print Overrides */
 @media print {
 body { background: #fff !important; color: #000 !important; padding: 0; }
 .tab-nav, .filter-bar, .badge-tag { display: none !important; }
-.tab-content { display: block !important; }
+.tab-view { display: block !important; }
 .inv-card, .caution-card, .task-item, .rule-box {
 background: #fff !important;
 border: 1px solid #ccc !important;
@@ -271,6 +293,18 @@ color: #000 !important;
 </style>
 </head>
 <body>
+​<!-- Hidden Tab Radios -->
+<input type="radio" class="tab-radio" name="main_tab" id="tab-switch-checklist" checked>
+<input type="radio" class="tab-radio" name="main_tab" id="tab-switch-inventory">
+​<!-- Hidden Filter Radios (Direct CSS control) -->
+<input type="radio" class="filter-radio" name="freq_filter" id="filter-all" checked>
+<input type="radio" class="filter-radio" name="freq_filter" id="filter-daily">
+<input type="radio" class="filter-radio" name="freq_filter" id="filter-weekly">
+<input type="radio" class="filter-radio" name="freq_filter" id="filter-biweekly">
+<input type="radio" class="filter-radio" name="freq_filter" id="filter-monthly">
+<input type="radio" class="filter-radio" name="freq_filter" id="filter-quarterly">
+<input type="radio" class="filter-radio" name="freq_filter" id="filter-halfyearly">
+<input type="radio" class="filter-radio" name="freq_filter" id="filter-yearly">
 ​<div class="container">
 <header>
 <div>
@@ -279,34 +313,33 @@ color: #000 !important;
 </div>
 <div class="badge-tag">Carnival Red Edition</div>
 </header>
-​<!-- MAIN NAVIGATION TABS -->
+​<!-- MAIN TABS (LABEL-CONTROLLED) -->
 <div class="tab-nav">
-<button type="button" class="tab-btn active" onclick="switchTab('checklist', this)">Maintenance Protocol</button>
-<button type="button" class="tab-btn" onclick="switchTab('inventory', this)">Required Inventory & Arsenal</button>
+<label class="tab-label" for="tab-switch-checklist">Maintenance Protocol</label>
+<label class="tab-label" for="tab-switch-inventory">Required Inventory & Arsenal</label>
 </div>
-​<!-- TAB 1: MAINTENANCE CHECKLIST & PROTOCOL -->
-<div id="tab-checklist" class="tab-content active">
-​<!-- FILTERS PLACED RIGHT AT THE TOP -->
-<div class="filter-bar" id="filterBar">
-<button type="button" class="filter-btn active" onclick="filterItems('all', this)">All</button>
-<button type="button" class="filter-btn" onclick="filterItems('Daily', this)">Daily</button>
-<button type="button" class="filter-btn" onclick="filterItems('Weekly', this)">Weekly</button>
-<button type="button" class="filter-btn" onclick="filterItems('Bi-Weekly', this)">Bi-Weekly</button>
-<button type="button" class="filter-btn" onclick="filterItems('Monthly', this)">Monthly</button>
-<button type="button" class="filter-btn" onclick="filterItems('Quarterly', this)">Quarterly</button>
-<button type="button" class="filter-btn" onclick="filterItems('Half-Yearly', this)">Half-Yearly</button>
-<button type="button" class="filter-btn" onclick="filterItems('Yearly', this)">Yearly</button>
+​<!-- VIEW 1: MAINTENANCE PROTOCOL -->
+<div id="view-checklist" class="tab-view">
+​<!-- FILTER BAR AT TOP -->
+<div class="filter-bar">
+<label class="filter-label" for="filter-all">All</label>
+<label class="filter-label" for="filter-daily">Daily</label>
+<label class="filter-label" for="filter-weekly">Weekly</label>
+<label class="filter-label" for="filter-biweekly">Bi-Weekly</label>
+<label class="filter-label" for="filter-monthly">Monthly</label>
+<label class="filter-label" for="filter-quarterly">Quarterly</label>
+<label class="filter-label" for="filter-halfyearly">Half-Yearly</label>
+<label class="filter-label" for="filter-yearly">Yearly</label>
 ​<div class="utility-btns">
 <button type="button" class="btn-tool" onclick="window.print()">Print / PDF</button>
-<button type="button" class="btn-tool" onclick="resetChecklist()">Reset</button>
+<button type="button" class="btn-tool" onclick="resetAllChecks()">Reset</button>
 </div>
 </div>
-​<!-- SCHEDULED TASKS -->
-<h2>Maintenance Checklist</h2>
+​<h2>Maintenance Checklist</h2>
 <div class="task-list">
 ​<!-- DAILY -->
 <div class="task-item" data-freq="Daily">
-<input type="checkbox" class="task-check" id="chk_d1" onchange="toggleTask(this)">
+<input type="checkbox" class="task-check" id="chk_d1">
 <div class="task-body">
 <div class="task-header">
 <span class="task-title">Wipe Golden Inverted Fork Stanchions</span>
@@ -317,7 +350,7 @@ color: #000 !important;
 </div>
 </div>
 ​<div class="task-item" data-freq="Daily">
-<input type="checkbox" class="task-check" id="chk_d2" onchange="toggleTask(this)">
+<input type="checkbox" class="task-check" id="chk_d2">
 <div class="task-body">
 <div class="task-header">
 <span class="task-title">Clean Vision Surfaces (Headlamp & Mirrors)</span>
@@ -329,18 +362,18 @@ color: #000 !important;
 </div>
 ​<!-- WEEKLY -->
 <div class="task-item" data-freq="Weekly">
-<input type="checkbox" class="task-check" id="chk_w1" onchange="toggleTask(this)">
+<input type="checkbox" class="task-check" id="chk_w1">
 <div class="task-body">
 <div class="task-header">
 <span class="task-title">Pre-Foam with Hand Pump Pressure Sprayer</span>
-<span class="task-tag task-freq">Weekly (15 mins)</span>
+<span class="task-freq">Weekly (15 mins)</span>
 </div>
 <div class="task-desc">Fill your 2L manual pump sprayer with water and 40ml of pH-neutral shampoo. Pump to build pressure and mist the entire bike thoroughly. Let dwell for 2 minutes to encapsulate and loosen road dust touchlessly.</div>
 <div class="task-meta">Tool: 2L manual pump foamer + pH shampoo | Verification: Heavy silt runs off in thick soapy drips.</div>
 </div>
 </div>
 ​<div class="task-item" data-freq="Weekly">
-<input type="checkbox" class="task-check" id="chk_w2" onchange="toggleTask(this)">
+<input type="checkbox" class="task-check" id="chk_w2">
 <div class="task-body">
 <div class="task-header">
 <span class="task-title">Two-Bucket Hand Sponge Wash</span>
@@ -351,7 +384,7 @@ color: #000 !important;
 </div>
 </div>
 ​<div class="task-item" data-freq="Weekly">
-<input type="checkbox" class="task-check" id="chk_w3" onchange="toggleTask(this)">
+<input type="checkbox" class="task-check" id="chk_w3">
 <div class="task-body">
 <div class="task-header">
 <span class="task-title">Gravity Pour Rinse & Twisted-Loop Towel Dry</span>
@@ -362,7 +395,7 @@ color: #000 !important;
 </div>
 </div>
 ​<div class="task-item" data-freq="Weekly">
-<input type="checkbox" class="task-check" id="chk_w4" onchange="toggleTask(this)">
+<input type="checkbox" class="task-check" id="chk_w4">
 <div class="task-body">
 <div class="task-header">
 <span class="task-title">Fluid Sight Glass & Reservoir Check</span>
@@ -374,7 +407,7 @@ color: #000 !important;
 </div>
 ​<!-- BI-WEEKLY -->
 <div class="task-item" data-freq="Bi-Weekly">
-<input type="checkbox" class="task-check" id="chk_bw1" onchange="toggleTask(this)">
+<input type="checkbox" class="task-check" id="chk_bw1">
 <div class="task-body">
 <div class="task-header">
 <span class="task-title">Drive Chain Degrease with Grunge Brush</span>
@@ -385,7 +418,7 @@ color: #000 !important;
 </div>
 </div>
 ​<div class="task-item" data-freq="Bi-Weekly">
-<input type="checkbox" class="task-check" id="chk_bw2" onchange="toggleTask(this)">
+<input type="checkbox" class="task-check" id="chk_bw2">
 <div class="task-body">
 <div class="task-header">
 <span class="task-title">Drive Chain Lubrication with Cardboard Shield</span>
@@ -397,7 +430,7 @@ color: #000 !important;
 </div>
 ​<!-- MONTHLY -->
 <div class="task-item" data-freq="Monthly">
-<input type="checkbox" class="task-check" id="chk_m1" onchange="toggleTask(this)">
+<input type="checkbox" class="task-check" id="chk_m1">
 <div class="task-body">
 <div class="task-header">
 <span class="task-title">Detail Rear Monoshock & Linkage with Bottle Brush</span>
@@ -408,7 +441,7 @@ color: #000 !important;
 </div>
 </div>
 ​<div class="task-item" data-freq="Monthly">
-<input type="checkbox" class="task-check" id="chk_m2" onchange="toggleTask(this)">
+<input type="checkbox" class="task-check" id="chk_m2">
 <div class="task-body">
 <div class="task-header">
 <span class="task-title">Radiator Fin Hand Cleaning</span>
@@ -420,7 +453,7 @@ color: #000 !important;
 </div>
 ​<!-- QUARTERLY -->
 <div class="task-item" data-freq="Quarterly">
-<input type="checkbox" class="task-check" id="chk_q1" onchange="toggleTask(this)">
+<input type="checkbox" class="task-check" id="chk_q1">
 <div class="task-body">
 <div class="task-header">
 <span class="task-title">Hand Wax / Sealant on Carnival Red Tank</span>
@@ -431,7 +464,7 @@ color: #000 !important;
 </div>
 </div>
 ​<div class="task-item" data-freq="Quarterly">
-<input type="checkbox" class="task-check" id="chk_q2" onchange="toggleTask(this)">
+<input type="checkbox" class="task-check" id="chk_q2">
 <div class="task-body">
 <div class="task-header">
 <span class="task-title">Condition Unpainted Textured Plastics</span>
@@ -442,7 +475,7 @@ color: #000 !important;
 </div>
 </div>
 ​<div class="task-item" data-freq="Quarterly">
-<input type="checkbox" class="task-check" id="chk_q3" onchange="toggleTask(this)">
+<input type="checkbox" class="task-check" id="chk_q3">
 <div class="task-body">
 <div class="task-header">
 <span class="task-title">Fasteners & Frame Anti-Corrosion Barrier</span>
@@ -454,7 +487,7 @@ color: #000 !important;
 </div>
 ​<!-- HALF-YEARLY -->
 <div class="task-item" data-freq="Half-Yearly">
-<input type="checkbox" class="task-check" id="chk_hy1" onchange="toggleTask(this)">
+<input type="checkbox" class="task-check" id="chk_hy1">
 <div class="task-body">
 <div class="task-header">
 <span class="task-title">Battery Terminal Service & Dielectric Grease</span>
@@ -465,7 +498,7 @@ color: #000 !important;
 </div>
 </div>
 ​<div class="task-item" data-freq="Half-Yearly">
-<input type="checkbox" class="task-check" id="chk_hy2" onchange="toggleTask(this)">
+<input type="checkbox" class="task-check" id="chk_hy2">
 <div class="task-body">
 <div class="task-header">
 <span class="task-title">Chassis Pivot Point Lubrication</span>
@@ -477,7 +510,7 @@ color: #000 !important;
 </div>
 ​<!-- YEARLY -->
 <div class="task-item" data-freq="Yearly">
-<input type="checkbox" class="task-check" id="chk_y1" onchange="toggleTask(this)">
+<input type="checkbox" class="task-check" id="chk_y1">
 <div class="task-body">
 <div class="task-header">
 <span class="task-title">Full Clay Bar Paint Decontamination</span>
@@ -488,8 +521,8 @@ color: #000 !important;
 </div>
 </div>
 ​</div>
-​<!-- HARDWARE CAUTION ZONES (MOVED TO BOTTOM) -->
-<h2>Hardware Caution Zones (Keep at Bottom)</h2>
+​<!-- CAUTIONS AT BOTTOM -->
+<h2>Hardware Caution Zones (Safety Priority)</h2>
 <div class="grid-caution">
 <div class="caution-card">
 <h3>Zone 1: Cluster & USB</h3>
@@ -512,8 +545,7 @@ color: #000 !important;
 <p>Clean coils with a soft bottle brush. Wipe chrome piston rod clean; never leave tacky chain lube overspray on the shaft.</p>
 </div>
 </div>
-​<!-- DO'S AND DON'TS -->
-<div class="rules-grid">
+​<div class="rules-grid">
 <div class="rule-box do">
 <h3>Do's (Hand Washing)</h3>
 <ul>
@@ -534,53 +566,49 @@ color: #000 !important;
 </div>
 </div>
 ​</div>
-​<!-- TAB 2: INVENTORY & ARSENAL (OWN DEDICATED TAB) -->
-<div id="tab-inventory" class="tab-content">
+​<!-- VIEW 2: INVENTORY & ARSENAL -->
+<div id="view-inventory" class="tab-view">
 <h2>Complete Garage Equipment & Chemical Arsenal</h2>
 <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 14px;">Track and check off every tool, textile, and chemical needed for maintaining the Triumph Scrambler 400 X.</p>
 ​<div class="inventory-grid">
-​<!-- Item 1 -->
-<div class="inv-card" id="card_inv1">
+​<div class="inv-card" id="card_inv1">
 <div class="inv-head">
 <span class="inv-cat">Hardware</span>
 <label class="inv-check-label">
-<input type="checkbox" class="task-check" id="inv1" onchange="toggleInv(this, 'card_inv1')"> Acquired
+<input type="checkbox" class="task-check" id="inv1"> Acquired
 </label>
 </div>
 <div class="inv-title">1.5L - 2L Manual Pump Pressure Foamer</div>
 <div class="inv-desc">Hand-pump bottle with adjustable foaming nozzle and safety pressure-release valve. Produces thick, clinging foam without needing garden hose taps or electric pressure washers.</div>
 <div class="inv-use">Role: Touchless dirt pre-soak & radiator bug release</div>
 </div>
-​<!-- Item 2 -->
-<div class="inv-card" id="card_inv2">
+​<div class="inv-card" id="card_inv2">
 <div class="inv-head">
 <span class="inv-cat">Textiles</span>
 <label class="inv-check-label">
-<input type="checkbox" class="task-check" id="inv2" onchange="toggleInv(this, 'card_inv2')"> Acquired
+<input type="checkbox" class="task-check" id="inv2"> Acquired
 </label>
 </div>
 <div class="inv-title">Plush Microfiber Wash Mitt</div>
 <div class="inv-desc">Soft chenille or micro-noodle wash mitt used strictly on the Carnival Red tank, front flyscreen, and painted surfaces to trap dirt deep in fibers without scratching.</div>
 <div class="inv-use">Rule: Never touch greasy wheels or chain with this mitt</div>
 </div>
-​<!-- Item 3 -->
-<div class="inv-card" id="card_inv3">
+​<div class="inv-card" id="card_inv3">
 <div class="inv-head">
 <span class="inv-cat">Textiles</span>
 <label class="inv-check-label">
-<input type="checkbox" class="task-check" id="inv3" onchange="toggleInv(this, 'card_inv3')"> Acquired
+<input type="checkbox" class="task-check" id="inv3"> Acquired
 </label>
 </div>
 <div class="inv-title">500+ GSM Twisted-Loop Drying Towel</div>
 <div class="inv-desc">High-density drying towel (minimum 40x60 cm). Absorbs water instantly on contact to prevent hard water mineral scale from baking onto hot engine fins and tank clear coat.</div>
 <div class="inv-use">Role: Streak-free post-wash water removal</div>
 </div>
-​<!-- Item 4 -->
-<div class="inv-card" id="card_inv4">
+​<div class="inv-card" id="card_inv4">
 <div class="inv-head">
 <span class="inv-cat">Textiles</span>
 <label class="inv-check-label">
-<input type="checkbox" class="task-check" id="inv4" onchange="toggleInv(this, 'card_inv4')"> Acquired
+<input type="checkbox" class="task-check" id="inv4"> Acquired
 </label>
 </div>
 <div class="inv-title">3x 300 GSM Short-Pile Utility Towels</div>
@@ -593,96 +621,88 @@ color: #000 !important;
 • Towel C: Oily engine wiping and ACF-50 frame barrier.</div>
 <div class="inv-use">Role: Precision wiping & stanchion seal protection</div>
 </div>
-​<!-- Item 5 -->
-<div class="inv-card" id="card_inv5">
+​<div class="inv-card" id="card_inv5">
 <div class="inv-head">
 <span class="inv-cat">Tools</span>
 <label class="inv-check-label">
-<input type="checkbox" class="task-check" id="inv5" onchange="toggleInv(this, 'card_inv5')"> Acquired
+<input type="checkbox" class="task-check" id="inv5"> Acquired
 </label>
 </div>
 <div class="inv-title">Two Plastic Wash Buckets + Wheel Sponge</div>
 <div class="inv-desc">Bucket 1 for diluted shampoo solution; Bucket 2 for clean water rinse to flush grit from the mitt. One separate porous sponge reserved solely for lower rims, swingarm, and exhaust underside.</div>
 <div class="inv-use">Role: Two-bucket grit isolation system</div>
 </div>
-​<!-- Item 6 -->
-<div class="inv-card" id="card_inv6">
+​<div class="inv-card" id="card_inv6">
 <div class="inv-head">
 <span class="inv-cat">Drivetrain</span>
 <label class="inv-check-label">
-<input type="checkbox" class="task-check" id="inv6" onchange="toggleInv(this, 'card_inv6')"> Acquired
+<input type="checkbox" class="task-check" id="inv6"> Acquired
 </label>
 </div>
 <div class="inv-title">3-Sided Grunge Chain Brush</div>
 <div class="inv-desc">Stiff U-shaped polypropylene bristle brush engineered to wrap around all 3 exposed sides of the 520 chain run at once, with a straight tail brush for rear sprocket teeth.</div>
 <div class="inv-use">Role: Deep mechanical chain dirt breakdown</div>
 </div>
-​<!-- Item 7 -->
-<div class="inv-card" id="card_inv7">
+​<div class="inv-card" id="card_inv7">
 <div class="inv-head">
 <span class="inv-cat">Suspension</span>
 <label class="inv-check-label">
-<input type="checkbox" class="task-check" id="inv7" onchange="toggleInv(this, 'card_inv7')"> Acquired
+<input type="checkbox" class="task-check" id="inv7"> Acquired
 </label>
 </div>
 <div class="inv-title">Long Flexible Bottle / Linkage Brush</div>
 <div class="inv-desc">Slim, 360-degree soft bristle wire brush that easily snakes through the tight swingarm gap to scrub caked road silt from the rear shock spring coils and lower linkage pivot.</div>
 <div class="inv-use">Role: Clean monoshock cavity without scraping paint</div>
 </div>
-​<!-- Item 8 -->
-<div class="inv-card" id="card_inv8">
+​<div class="inv-card" id="card_inv8">
 <div class="inv-head">
 <span class="inv-cat">Chemicals</span>
 <label class="inv-check-label">
-<input type="checkbox" class="task-check" id="inv8" onchange="toggleInv(this, 'card_inv8')"> Acquired
+<input type="checkbox" class="task-check" id="inv8"> Acquired
 </label>
 </div>
 <div class="inv-title">pH-Neutral Bike Shampoo (Wax-Safe)</div>
 <div class="inv-desc">Concentrated automotive/bike wash soap formulated at pH 7.0. Provides high lubricity to glide dirt away without stripping factory wax, dulling paint, or drying rubber hoses.</div>
 <div class="inv-use">Danger: Never use dishwashing liquids or clothes detergents</div>
 </div>
-​<!-- Item 9 -->
-<div class="inv-card" id="card_inv9">
+​<div class="inv-card" id="card_inv9">
 <div class="inv-head">
 <span class="inv-cat">Chemicals</span>
 <label class="inv-check-label">
-<input type="checkbox" class="task-check" id="inv9" onchange="toggleInv(this, 'card_inv9')"> Acquired
+<input type="checkbox" class="task-check" id="inv9"> Acquired
 </label>
 </div>
 <div class="inv-title">Pure Kerosene (Chain Degreaser)</div>
 <div class="inv-desc">The official factory-recommended solvent for O-ring and X-ring chains. Instantly dissolves baked fling gunk and tar without swelling or destroying the synthetic rubber O-rings.</div>
 <div class="inv-use">Danger: Never use petrol or diesel (petrol destroys O-rings)</div>
 </div>
-​<!-- Item 10 -->
-<div class="inv-card" id="card_inv10">
+​<div class="inv-card" id="card_inv10">
 <div class="inv-head">
 <span class="inv-cat">Chemicals</span>
 <label class="inv-check-label">
-<input type="checkbox" class="task-check" id="inv10" onchange="toggleInv(this, 'card_inv10')"> Acquired
+<input type="checkbox" class="task-check" id="inv10"> Acquired
 </label>
 </div>
 <div class="inv-title">Synthetic O-Ring Chain Lubricant</div>
 <div class="inv-desc">High-tack synthetic lubricant or wax formula equipped with a pinpoint straw nozzle. Penetrates between inner rollers and side plates while resisting high-speed centrifugal fling.</div>
 <div class="inv-use">Role: Extends drivetrain life and sprocket teeth</div>
 </div>
-​<!-- Item 11 -->
-<div class="inv-card" id="card_inv11">
+​<div class="inv-card" id="card_inv11">
 <div class="inv-head">
 <span class="inv-cat">Protection</span>
 <label class="inv-check-label">
-<input type="checkbox" class="task-check" id="inv11" onchange="toggleInv(this, 'card_inv11')"> Acquired
+<input type="checkbox" class="task-check" id="inv11"> Acquired
 </label>
 </div>
 <div class="inv-title">ACF-50 Anti-Corrosion Spray</div>
 <div class="inv-desc">Aviation-grade corrosion barrier fluid. Applied via microfiber cloth onto chassis bolt heads, footpeg pivots, engine case bolts, and electrical connections to halt oxidation.</div>
 <div class="inv-use">Safety: Keep strictly off brake rotors and pads</div>
 </div>
-​<!-- Item 12 -->
-<div class="inv-card" id="card_inv12">
+​<div class="inv-card" id="card_inv12">
 <div class="inv-head">
 <span class="inv-cat">Protection</span>
 <label class="inv-check-label">
-<input type="checkbox" class="task-check" id="inv12" onchange="toggleInv(this, 'card_inv12')"> Acquired
+<input type="checkbox" class="task-check" id="inv12"> Acquired
 </label>
 </div>
 <div class="inv-title">Carnauba Paste Wax & UV Trim Restorer</div>
@@ -693,88 +713,48 @@ color: #000 !important;
 </div>
 ​</div>
 ​<script>
-// 1. Main Tab Switching Logic
-function switchTab(tabName, button) {
-var tabs = document.querySelectorAll('.tab-btn');
-for (var i = 0; i < tabs.length; i++) {
-tabs[i].className = 'tab-btn';
-}
-button.className = 'tab-btn active';
-​document.getElementById('tab-checklist').className = 'tab-content';
-document.getElementById('tab-inventory').className = 'tab-content';
-​if (tabName === 'checklist') {
-document.getElementById('tab-checklist').className = 'tab-content active';
+// Delegated change listener for LocalStorage persistence
+document.addEventListener('change', function(e) {
+if (!e.target || !e.target.classList.contains('task-check')) return;
+var chk = e.target;
+var parentTask = chk.closest('.task-item');
+var parentCard = chk.closest('.inv-card');
+​if (chk.checked) {
+if (parentTask) parentTask.classList.add('done');
+if (parentCard) parentCard.classList.add('checked');
+localStorage.setItem('scrambler_saved_' + chk.id, '1');
 } else {
-document.getElementById('tab-inventory').className = 'tab-content active';
+if (parentTask) parentTask.classList.remove('done');
+if (parentCard) parentCard.classList.remove('checked');
+localStorage.removeItem('scrambler_saved_' + chk.id);
+}
+});
+​// Restore checkbox states on load
+window.addEventListener('DOMContentLoaded', function() {
+var allChecks = document.querySelectorAll('.task-check');
+for (var i = 0; i < allChecks.length; i++) {
+var box = allChecks[i];
+if (localStorage.getItem('scrambler_saved_' + box.id) === '1') {
+box.checked = true;
+var pt = box.closest('.task-item');
+var pc = box.closest('.inv-card');
+if (pt) pt.classList.add('done');
+if (pc) pc.classList.add('checked');
 }
 }
-​// 2. Checklist Filter Logic (Filter bar at top)
-function filterItems(freq, button) {
-var buttons = document.querySelectorAll('#filterBar .filter-btn');
-for (var i = 0; i < buttons.length; i++) {
-buttons[i].className = 'filter-btn';
-}
-button.className = 'filter-btn active';
-​var items = document.querySelectorAll('.task-item');
-for (var j = 0; j < items.length; j++) {
-var itemFreq = items[j].getAttribute('data-freq');
-if (freq === 'all' || itemFreq === freq) {
-items[j].style.display = 'flex';
-} else {
-items[j].style.display = 'none';
-}
-}
-}
-​// 3. Checklist Checkbox Toggle & Persistence
-function toggleTask(checkbox) {
-var parent = checkbox.parentElement;
-if (checkbox.checked) {
-parent.className = 'task-item done';
-localStorage.setItem('scrambler_chk_' + checkbox.id, '1');
-} else {
-parent.className = 'task-item';
-localStorage.removeItem('scrambler_chk_' + checkbox.id);
-}
-}
-​// 4. Inventory Checkbox Toggle & Persistence
-function toggleInv(checkbox, cardId) {
-var card = document.getElementById(cardId);
-if (checkbox.checked) {
-if (card) card.className = 'inv-card checked';
-localStorage.setItem('scrambler_inv_' + checkbox.id, '1');
-} else {
-if (card) card.className = 'inv-card';
-localStorage.removeItem('scrambler_inv_' + checkbox.id);
-}
-}
-​// 5. Restore All Saved States on Page Load
-window.onload = function() {
-// Restore checklist tasks
-var taskBoxes = document.querySelectorAll('.task-item .task-check');
-for (var i = 0; i < taskBoxes.length; i++) {
-if (localStorage.getItem('scrambler_chk_' + taskBoxes[i].id) === '1') {
-taskBoxes[i].checked = true;
-taskBoxes[i].parentElement.className = 'task-item done';
-}
-}
-​// Restore inventory items
-var invBoxes = document.querySelectorAll('.inv-card .task-check');
-for (var j = 0; j < invBoxes.length; j++) {
-if (localStorage.getItem('scrambler_inv_' + invBoxes[j].id) === '1') {
-invBoxes[j].checked = true;
-var card = invBoxes[j].closest('.inv-card');
-if (card) card.className = 'inv-card checked';
-}
-}
-};
-​// 6. Reset Checklist
-function resetChecklist() {
-if (confirm('Reset all checked items in your maintenance schedule?')) {
-var taskBoxes = document.querySelectorAll('.task-item .task-check');
-for (var i = 0; i < taskBoxes.length; i++) {
-taskBoxes[i].checked = false;
-taskBoxes[i].parentElement.className = 'task-item';
-localStorage.removeItem('scrambler_chk_' + taskBoxes[i].id);
+});
+​// Reset function
+function resetAllChecks() {
+if (confirm('Reset all checklist and inventory marks?')) {
+var allChecks = document.querySelectorAll('.task-check');
+for (var i = 0; i < allChecks.length; i++) {
+var box = allChecks[i];
+box.checked = false;
+var pt = box.closest('.task-item');
+var pc = box.closest('.inv-card');
+if (pt) pt.classList.remove('done');
+if (pc) pc.classList.remove('checked');
+localStorage.removeItem('scrambler_saved_' + box.id);
 }
 }
 }
